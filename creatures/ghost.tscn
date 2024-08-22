@@ -1,0 +1,69 @@
+[gd_scene load_steps=10 format=3 uid="uid://b4dbapbr70wm0"]
+
+[ext_resource type="Script" path="res://creatures/ghost.gd" id="1_clrju"]
+[ext_resource type="Script" path="res://utils/hurtBox.gd" id="2_dmdpb"]
+[ext_resource type="Shader" path="res://utils/blink.gdshader" id="3_jlgqm"]
+[ext_resource type="Script" path="res://utils/health.gd" id="3_upmrl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_evhgd"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_svrh2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_745jr"]
+resource_local_to_scene = true
+shader = ExtResource("3_jlgqm")
+shader_parameter/blink_color = Color(1, 1, 1, 1)
+shader_parameter/blink_intensity = 0.0
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_kdp3r"]
+size = Vector2(64, 64)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jiiia"]
+
+[node name="Ghost" type="CharacterBody2D"]
+collision_layer = 2
+motion_mode = 1
+script = ExtResource("1_clrju")
+
+[node name="DetectionZone" type="Area2D" parent="."]
+scale = Vector2(29.3721, 29.3721)
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionZone"]
+shape = SubResource("CircleShape2D_evhgd")
+debug_color = Color(0.521569, 0.521569, 0.270588, 0.270588)
+
+[node name="HurtBox" type="Area2D" parent="."]
+scale = Vector2(0.589039, 0.589039)
+script = ExtResource("2_dmdpb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+scale = Vector2(9.09775, 9.09775)
+shape = SubResource("CircleShape2D_svrh2")
+debug_color = Color(1, 0.266667, 0.266667, 0.235294)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+modulate = Color(0.310666, 0.330274, 0.875316, 1)
+material = SubResource("ShaderMaterial_745jr")
+texture = SubResource("PlaceholderTexture2D_kdp3r")
+
+[node name="Body" type="CollisionShape2D" parent="."]
+scale = Vector2(2.92, 2.92)
+shape = SubResource("CircleShape2D_jiiia")
+
+[node name="Health" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3_upmrl")
+max_health = 10
+health = 5
+
+[node name="RecoveryTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+
+[connection signal="body_entered" from="DetectionZone" to="." method="_on_detection_zone_body_entered"]
+[connection signal="body_exited" from="DetectionZone" to="." method="_on_detection_zone_body_exited"]
+[connection signal="hurt" from="HurtBox" to="Health" method="_on_hurt_box_hurt"]
+[connection signal="died" from="Health" to="." method="_on_health_died"]
+[connection signal="lost_health" from="Health" to="." method="_on_health_lost_health"]
+[connection signal="timeout" from="RecoveryTimer" to="." method="_on_recovery_timer_timeout"]
