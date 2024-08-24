@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://b4dbapbr70wm0"]
+[gd_scene load_steps=15 format=3 uid="uid://b4dbapbr70wm0"]
 
 [ext_resource type="Script" path="res://creatures/ghost.gd" id="1_clrju"]
 [ext_resource type="Script" path="res://utils/hurtBox.gd" id="2_dmdpb"]
 [ext_resource type="Shader" path="res://utils/blink.gdshader" id="3_jlgqm"]
 [ext_resource type="Script" path="res://utils/health.gd" id="3_upmrl"]
+[ext_resource type="Texture2D" uid="uid://bee0janncbggo" path="res://assets/eyeball.png" id="4_v70pb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_evhgd"]
 
@@ -14,9 +15,6 @@ resource_local_to_scene = true
 shader = ExtResource("3_jlgqm")
 shader_parameter/blink_color = Color(1, 1, 1, 1)
 shader_parameter/blink_intensity = 0.0
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_kdp3r"]
-size = Vector2(64, 64)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jiiia"]
 
@@ -35,42 +33,13 @@ initial_velocity_max = 200.0
 scale_max = 10.0
 color_ramp = SubResource("GradientTexture1D_7j2xf")
 
-[sub_resource type="Animation" id="Animation_7nfbi"]
+[sub_resource type="Animation" id="Animation_iojfa"]
 resource_name = "wander"
 length = 2.0
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = false
-tracks/0/path = NodePath("Sprite2D:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.9, 1, 1.5, 2),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Color(0.310666, 0.330274, 0.875316, 1), Color(0.31, 0.33, 0.875, 0), Color(0.31, 0.329, 0.875, 0), Color(0.310666, 0.330274, 0.875316, 1), Color(0.311, 0.33, 0.875, 0), Color(0.310666, 0.330274, 0.875316, 1)]
-}
 
-[sub_resource type="Animation" id="Animation_1od0g"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0.310666, 0.330274, 0.875316, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_g1tww"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_eiyjy"]
 _data = {
-"RESET": SubResource("Animation_1od0g"),
-"wander": SubResource("Animation_7nfbi")
+"wander": SubResource("Animation_iojfa")
 }
 
 [node name="Ghost" type="CharacterBody2D"]
@@ -97,9 +66,8 @@ debug_color = Color(1, 0.266667, 0.266667, 0.235294)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-modulate = Color(0.310666, 0.330274, 0.875316, 1)
 material = SubResource("ShaderMaterial_745jr")
-texture = SubResource("PlaceholderTexture2D_kdp3r")
+texture = ExtResource("4_v70pb")
 
 [node name="Body" type="CollisionShape2D" parent="."]
 scale = Vector2(2.92, 2.92)
@@ -125,9 +93,8 @@ explosiveness = 1.0
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
 libraries = {
-"": SubResource("AnimationLibrary_g1tww")
+"": SubResource("AnimationLibrary_eiyjy")
 }
-autoplay = "wander"
 
 [connection signal="body_entered" from="DetectionZone" to="." method="_on_detection_zone_body_entered"]
 [connection signal="body_exited" from="DetectionZone" to="." method="_on_detection_zone_body_exited"]

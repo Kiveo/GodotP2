@@ -16,6 +16,7 @@ func particle_explode(gpu_particles: GPUParticles2D) -> void:
 
 func fade_away(sprite: Sprite2D) -> void:
 	if !sprite: return
+	if tween: tween.kill()
 	var new_tween = sprite.create_tween()
 	new_tween.tween_property(sprite, "modulate:a", 0, 0.25)
 
