@@ -16,8 +16,8 @@ func particle_explode(gpu_particles: GPUParticles2D) -> void:
 
 func fade_away(sprite: Sprite2D) -> void:
 	if !sprite: return
-	var tween = sprite.create_tween()
-	tween.tween_property(sprite, "modulate:a", 0, 0.25)
+	var new_tween = sprite.create_tween()
+	new_tween.tween_property(sprite, "modulate:a", 0, 0.25)
 
 ## Assumes presence of material "blink" shader and causes blink plus a knockback
 ## If passed a Vector2.Zero for damage_source_position, it will skip knockback
