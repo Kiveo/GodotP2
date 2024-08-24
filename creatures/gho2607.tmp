@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://b4dbapbr70wm0"]
+[gd_scene load_steps=13 format=3 uid="uid://b4dbapbr70wm0"]
 
 [ext_resource type="Script" path="res://creatures/ghost.gd" id="1_clrju"]
 [ext_resource type="Script" path="res://utils/hurtBox.gd" id="2_dmdpb"]
@@ -29,49 +29,16 @@ gradient = SubResource("Gradient_p50d5")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_88nhd"]
 lifetime_randomness = 1.0
 particle_flag_disable_z = true
-direction = Vector3(0, 0, 0)
-spread = 180.0
-initial_velocity_max = 200.0
-scale_max = 10.0
+emission_shape = 1
+emission_sphere_radius = 25.0
+direction = Vector3(0.5, -0.5, 0)
+initial_velocity_min = 200.0
+initial_velocity_max = 400.0
+gravity = Vector3(0, 700, 0)
+damping_min = 100.0
+damping_max = 800.0
+scale_max = 3.0
 color_ramp = SubResource("GradientTexture1D_7j2xf")
-
-[sub_resource type="Animation" id="Animation_7nfbi"]
-resource_name = "wander"
-length = 2.0
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = false
-tracks/0/path = NodePath("Sprite2D:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.9, 1, 1.5, 2),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Color(0.310666, 0.330274, 0.875316, 1), Color(0.31, 0.33, 0.875, 0), Color(0.31, 0.329, 0.875, 0), Color(0.310666, 0.330274, 0.875316, 1), Color(0.311, 0.33, 0.875, 0), Color(0.310666, 0.330274, 0.875316, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_1od0g"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0.310666, 0.330274, 0.875316, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_g1tww"]
-_data = {
-"RESET": SubResource("Animation_1od0g"),
-"wander": SubResource("Animation_7nfbi")
-}
 
 [node name="Ghost" type="CharacterBody2D"]
 collision_layer = 2
@@ -79,6 +46,7 @@ motion_mode = 1
 script = ExtResource("1_clrju")
 
 [node name="DetectionZone" type="Area2D" parent="."]
+visible = false
 scale = Vector2(29.3721, 29.3721)
 collision_layer = 0
 
@@ -87,11 +55,12 @@ shape = SubResource("CircleShape2D_evhgd")
 debug_color = Color(0.521569, 0.521569, 0.270588, 0.270588)
 
 [node name="HurtBox" type="Area2D" parent="."]
+visible = false
 scale = Vector2(0.589039, 0.589039)
 script = ExtResource("2_dmdpb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
-scale = Vector2(9, 9)
+scale = Vector2(9.09775, 9.09775)
 shape = SubResource("CircleShape2D_svrh2")
 debug_color = Color(1, 0.266667, 0.266667, 0.235294)
 
@@ -102,6 +71,7 @@ material = SubResource("ShaderMaterial_745jr")
 texture = SubResource("PlaceholderTexture2D_kdp3r")
 
 [node name="Body" type="CollisionShape2D" parent="."]
+visible = false
 scale = Vector2(2.92, 2.92)
 shape = SubResource("CircleShape2D_jiiia")
 
@@ -117,17 +87,10 @@ unique_name_in_owner = true
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 unique_name_in_owner = true
 emitting = false
-amount = 16
+amount = 20
 process_material = SubResource("ParticleProcessMaterial_88nhd")
 one_shot = true
 explosiveness = 1.0
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-unique_name_in_owner = true
-libraries = {
-"": SubResource("AnimationLibrary_g1tww")
-}
-autoplay = "wander"
 
 [connection signal="body_entered" from="DetectionZone" to="." method="_on_detection_zone_body_entered"]
 [connection signal="body_exited" from="DetectionZone" to="." method="_on_detection_zone_body_exited"]

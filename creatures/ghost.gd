@@ -3,6 +3,9 @@ extends CharacterBody2D
 @onready var player: CharacterBody2D = %Player
 @onready var sprite: Sprite2D = %Sprite2D
 @onready var recovery_timer: Timer = %RecoveryTimer
+@onready var gpu_particles_2d: GPUParticles2D = %GPUParticles2D
+@onready var detection_zone: Area2D = $DetectionZone
+@onready var hurt_box: HurtBox = $HurtBox
 
 const SPEED = 100.0
 var origin: Vector2 = Vector2.ZERO
@@ -25,14 +28,12 @@ func _physics_process(delta: float) -> void:
 # CUSTOM FUNCTIONS
 # Movement
 func wander() -> void:
-	velocity = Vector2(randf_range(-50.0, 50.0),randf_range(-20.0, 20.0))
-	move_and_slide()
+	%AnimationPlayer.play("wander")
 
 func follow_player(delta: float) -> void:
 	position += (player.position - position) * delta
 
 # Logic / Helpers
-
 # SIGNALS
 func _on_detection_zone_body_entered(body: Player) -> void:
 	if !body: return
@@ -43,23 +44,19 @@ func _on_detection_zone_body_exited(body: Player) -> void:
 	alerted = false
 
 func _on_health_died() -> void:
+	detection_zone.queue_free()
+	hurt_box.queue_free()
+	$Body.queue_free()
+	damage_effects.fade_away(sprite)
+	damage_effects.particle_explode(gpu_particles_2d)
+	await get_tree().create_timer(gpu_particles_2d.lifetime).timeout
 	queue_free()
 
-# TODO REMOVE ONCE FUNCTIONAL REPLACEMENT CONFIRM
-#func setShader_BlinkIntensity(newIntensity: float) -> void:
-	#sprite.material.set_shader_parameter("blink_intensity", newIntensity)
 ## triggers effects other than health (which is handled by health component)
 func _on_health_lost_health() -> void:
 	recovering = true
 	recovery_timer.start()
-# TODO REMOVE ONCE FUNCTIONAL REPLACEMENT CONFIRM
-	#var damageEffects = DamageEffects.new()
 	damage_effects.blink_and_knockback(sprite, self, player.position)
-	
-	#var tween = create_tween()
-	#tween.tween_method(setShader_BlinkIntensity, 1.0, 0.0, 0.5)
-	#var away_position = -10 * (player.position - position).clamp(Vector2i(-1, -1), Vector2i(1, 1))
-	#tween.parallel().tween_property(sprite, "position", away_position, 0.25).as_relative().from_current().set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
 
 func _on_recovery_timer_timeout() -> void:
 	recovering = false
