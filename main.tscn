@@ -2,16 +2,15 @@
 
 [ext_resource type="PackedScene" uid="uid://b885nnmv5e0ky" path="res://creatures/player.tscn" id="1_esdpy"]
 [ext_resource type="PackedScene" uid="uid://b4dbapbr70wm0" path="res://creatures/ghost.tscn" id="2_d8wkm"]
-[ext_resource type="PackedScene" uid="uid://bji0lpywxxgvr" path="res://creatures/owl.tscn" id="3_mk7lh"]
+[ext_resource type="PackedScene" uid="uid://bji0lpywxxgvr" path="res://creatures/owl.tscn" id="3_nyqhx"]
 
 [node name="Main" type="Node"]
 
 [node name="Player" parent="." instance=ExtResource("1_esdpy")]
 unique_name_in_owner = true
-position = Vector2(37, 141)
+position = Vector2(77, 169)
 
 [node name="Ghost" parent="." instance=ExtResource("2_d8wkm")]
 position = Vector2(667, 271)
 
-[node name="Owl" parent="." instance=ExtResource("3_mk7lh")]
-position = Vector2(37, 16)
+[node name="Owl" parent="." instance=ExtResource("3_nyqhx")]

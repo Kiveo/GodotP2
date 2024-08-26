@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0ktbj"]
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
-collision_mask = 7
+collision_mask = 6
 motion_mode = 1
 script = ExtResource("1_ueafm")
 
@@ -16,3 +16,6 @@ texture = ExtResource("1_xch3g")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(6.44, 6.44)
 shape = SubResource("RectangleShape2D_0ktbj")
+
+[node name="Marker2D" type="Marker2D" parent="." groups=["owl_position"]]
+position = Vector2(-64, -151)

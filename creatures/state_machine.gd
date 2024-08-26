@@ -1,6 +1,5 @@
 extends Node
 
-# TODO can I avoid all the IF current_state checks with default state?
 @export var starting_state: State
 var current_state: State 
 
