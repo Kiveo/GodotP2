@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://2qdgglft1rax" path="res://icon.svg" id="1_xch3g"]
 [ext_resource type="Script" path="res://utils/hurtBox.gd" id="3_7fhp2"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_5r0m4"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wgnlm"]
 shader = ExtResource("1_42gw5")
 shader_parameter/blink_color = null
 shader_parameter/blink_intensity = 0.0
@@ -15,16 +15,15 @@ shader_parameter/blink_intensity = 0.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_jo5nv"]
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
+material = SubResource("ShaderMaterial_wgnlm")
 collision_mask = 6
 motion_mode = 1
 script = ExtResource("1_ueafm")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_5r0m4")
 texture = ExtResource("1_xch3g")
 
-[node name="Body" type="CollisionShape2D" parent="."]
-unique_name_in_owner = true
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(6.44, 6.44)
 shape = SubResource("RectangleShape2D_0ktbj")
 
@@ -32,22 +31,12 @@ shape = SubResource("RectangleShape2D_0ktbj")
 position = Vector2(-64, -151)
 
 [node name="HurtBox" type="Area2D" parent="."]
-unique_name_in_owner = true
 scale = Vector2(1.24, 1.24)
-collision_layer = 0
-collision_mask = 16
 script = ExtResource("3_7fhp2")
-friendly = true
 
-[node name="HurtBoxCollider" type="CollisionShape2D" parent="HurtBox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 scale = Vector2(6.4, 6.4)
 shape = SubResource("CircleShape2D_jo5nv")
 debug_color = Color(1, 0.266667, 0.266667, 0.2)
 
-[node name="RecoveryTimer" type="Timer" parent="."]
-unique_name_in_owner = true
-wait_time = 2.5
-one_shot = true
-
 [connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
-[connection signal="timeout" from="RecoveryTimer" to="." method="_on_recovery_timer_timeout"]

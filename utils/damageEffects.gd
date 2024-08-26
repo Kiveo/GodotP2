@@ -23,8 +23,8 @@ func fade_away(sprite: Sprite2D) -> void:
 ## Assumes presence of material "blink" shader and causes blink plus a knockback
 ## If passed a Vector2.Zero for damage_source_position, it will skip knockback
 func blink_and_knockback(sprite: Sprite2D, originNode: Node2D, damage_source_position: Vector2) -> void:
-	if (!sprite || !sprite.material || !sprite.material): 
-		printerr("No sprite or material detected in blink_and_knockback call. Sprite: ", sprite)
+	if (!sprite || !sprite.material): 
+		printerr("No sprite or material detected in blink_and_knockback call. Sprite: ", sprite, sprite.material)
 		return
 	prop_sprite = sprite
 	

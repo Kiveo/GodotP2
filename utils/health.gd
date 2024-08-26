@@ -34,5 +34,5 @@ func update_health(number: int) -> void:
 	if health <= 0:
 		died.emit()
 
-func _on_hurt_box_hurt(damage: int) -> void:
-	update_health(-damage) # note manually set to negative
+func _on_hurt_box_hurt(hitbox: HitBox) -> void:
+	update_health(-1 * hitbox.damage) # note manually set to negative

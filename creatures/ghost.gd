@@ -19,7 +19,9 @@ func _ready() -> void:
 	origin = global_position
 
 func _physics_process(delta: float) -> void:
-	if recovering: return
+	if recovering: 
+		%AnimationPlayer.stop()
+		return
 	if alerted:
 		follow_player(delta)
 	else:
@@ -56,7 +58,7 @@ func _on_health_died() -> void:
 func _on_health_lost_health() -> void:
 	recovering = true
 	recovery_timer.start()
-	damage_effects.blink_and_knockback(sprite, self, player.position)
+	damage_effects.blink_and_knockback(sprite, self, player.global_position)
 
 func _on_recovery_timer_timeout() -> void:
 	recovering = false

@@ -1,10 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://b4dbapbr70wm0"]
+[gd_scene load_steps=18 format=3 uid="uid://b4dbapbr70wm0"]
 
 [ext_resource type="Script" path="res://creatures/ghost.gd" id="1_clrju"]
 [ext_resource type="Script" path="res://utils/hurtBox.gd" id="2_dmdpb"]
 [ext_resource type="Shader" path="res://utils/blink.gdshader" id="3_jlgqm"]
 [ext_resource type="Script" path="res://utils/health.gd" id="3_upmrl"]
 [ext_resource type="Texture2D" uid="uid://bee0janncbggo" path="res://assets/eyeball.png" id="4_v70pb"]
+[ext_resource type="Script" path="res://utils/hitBox.gd" id="6_e2ry5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_evhgd"]
 
@@ -94,6 +95,8 @@ _data = {
 "wander": SubResource("Animation_iojfa")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_d3517"]
+
 [node name="Ghost" type="CharacterBody2D"]
 collision_layer = 2
 motion_mode = 1
@@ -109,6 +112,8 @@ debug_color = Color(0.521569, 0.521569, 0.270588, 0.270588)
 
 [node name="HurtBox" type="Area2D" parent="."]
 scale = Vector2(0.589039, 0.589039)
+collision_layer = 0
+collision_mask = 8
 script = ExtResource("2_dmdpb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
@@ -133,6 +138,7 @@ health = 5
 
 [node name="RecoveryTimer" type="Timer" parent="."]
 unique_name_in_owner = true
+wait_time = 2.0
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 unique_name_in_owner = true
@@ -147,6 +153,16 @@ unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_eiyjy")
 }
+
+[node name="HitBoxGhost" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("6_e2ry5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxGhost"]
+scale = Vector2(3.68, 3.68)
+shape = SubResource("CircleShape2D_d3517")
+debug_color = Color(0.258824, 0.854902, 0.266667, 0.2)
 
 [connection signal="body_entered" from="DetectionZone" to="." method="_on_detection_zone_body_entered"]
 [connection signal="body_exited" from="DetectionZone" to="." method="_on_detection_zone_body_exited"]
