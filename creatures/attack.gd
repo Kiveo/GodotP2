@@ -3,10 +3,10 @@ extends State
 @export var idle_state: State
 @export var move_state: State
 @export var attack_state: State
+@export_category('Custom')
+@export var attack_speed: float
 
 var initial_velocity: Vector2
-var attack_speed: float = move_speed * 2
-
 var current_attack_time: float = 0.0
 const ATTACK_TIME: float = 1.0
 var attacking: bool = false

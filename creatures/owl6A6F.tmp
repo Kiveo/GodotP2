@@ -79,4 +79,4 @@ script = ExtResource("6_72a8h")
 idle_state = NodePath("../Idle")
 move_state = NodePath("../Move")
 attack_state = NodePath(".")
-attack_speed = 2400.0
+animation_name = null
