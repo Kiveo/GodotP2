@@ -4,9 +4,12 @@ extends State
 @export var attack_state: State
 @export var move_state: State
 
+@onready var hit_box_collision_shape: CollisionShape2D = %HitBoxCollisionShape
+
 func enter() -> void:
 	super()
 	parent.velocity = Vector2.ZERO
+	hit_box_collision_shape.disabled = true
 
 func process_input(_event: InputEvent) -> State:
 	if Input.is_action_just_pressed("attack"):

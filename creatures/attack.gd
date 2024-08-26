@@ -6,6 +6,8 @@ extends State
 @export_category('Custom')
 @export var attack_speed: float
 
+@onready var hit_box_collision_shape: CollisionShape2D = %HitBoxCollisionShape
+
 var initial_velocity: Vector2
 var current_attack_time: float = 0.0
 const ATTACK_TIME: float = 1.0
@@ -14,6 +16,7 @@ var reloaded: bool = false
 
 func enter() -> void:
 	super()
+	hit_box_collision_shape.disabled = false
 	if !reloaded:
 		initial_velocity = parent.velocity.sign()
 	else: 
@@ -40,6 +43,7 @@ func process_physics(delta: float) -> State:
 	if !attacking and parent.global_position != target.global_position:
 		parent.velocity = Vector2.ZERO
 		parent.global_position = target.global_position
+		hit_box_collision_shape.disabled = true
 	elif !attacking:
 		reloaded = false
 		return idle_state
