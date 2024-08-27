@@ -41,5 +41,8 @@ position = Vector2(1167, 527)
 [node name="Key2" parent="." instance=ExtResource("6_scbdc")]
 position = Vector2(1074, 625)
 
+[node name="Key3" parent="." instance=ExtResource("6_scbdc")]
+position = Vector2(1222, 389)
+
 [node name="Chest" parent="." instance=ExtResource("6_lxv82")]
 position = Vector2(1167, 89)

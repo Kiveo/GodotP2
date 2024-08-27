@@ -1,12 +1,17 @@
 extends CharacterBody2D
 
+const KEY = preload("res://objects/key.tscn")
+
 @onready var player: CharacterBody2D = %Player
 @onready var sprite: Sprite2D = %Sprite2D
 @onready var recovery_timer: Timer = %RecoveryTimer
 @onready var gpu_particles_2d: GPUParticles2D = %GPUParticles2D
 @onready var detection_zone: Area2D = $DetectionZone
 @onready var hurt_box: HurtBox = $HurtBox
+@onready var health_bar: ProgressBar = %HealthBar
 
+@export var key_holder: bool = false
+@export var key_holder_style: StyleBoxFlat
 const SPEED = 100.0
 var origin: Vector2 = Vector2.ZERO
 var alerted: bool = false
@@ -16,7 +21,8 @@ var damage_effects: DamageEffects = DamageEffects.new()
 
 # BUILT IN FUNCTIONS
 func _ready() -> void:
-	origin = global_position
+	if key_holder and key_holder_style:
+		health_bar.add_theme_stylebox_override("fill", key_holder_style)
 
 func _physics_process(delta: float) -> void:
 	if recovering: 
@@ -52,6 +58,10 @@ func _on_health_died() -> void:
 	damage_effects.fade_away(sprite)
 	damage_effects.particle_explode(gpu_particles_2d)
 	await get_tree().create_timer(gpu_particles_2d.lifetime).timeout
+	if key_holder:
+		var new_key = KEY.instantiate()
+		owner.add_child(new_key)
+		new_key.global_position = self.global_position
 	queue_free()
 
 ## triggers effects other than health (which is handled by health component)

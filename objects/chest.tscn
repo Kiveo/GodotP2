@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://djus0tlmordqd"]
+
+[ext_resource type="Script" path="res://objects/chest.gd" id="1_nvi85"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_xgw5w"]
+size = Vector2(128, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3g2qi"]
+size = Vector2(188, 94)
+
+[node name="Chest" type="Area2D"]
+script = ExtResource("1_nvi85")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("PlaceholderTexture2D_xgw5w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_3g2qi")
+debug_color = Color(0.521569, 0.521569, 0.270588, 0.270588)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -40,6 +40,20 @@ func new_game() -> void:
 	start_button.disabled = false
 	start_button.visible = true
 
+func update_message(notice: String) -> void:
+	message_label.text = notice
+	message_label.visible = true
+	message_timer.start()
+
+func get_keys() -> int:
+	return data.keys
+
+func win() -> void:
+	update_center_label("YOU WIN!")
+	center_label.visible = true
+	get_tree().paused = true
+
+# REACTIONS / INTERNAL METHODS
 func _on_start_button_pressed() -> void:
 	new_game()
 	#button manips after new_game to avoid re-activating
@@ -49,13 +63,5 @@ func _on_start_button_pressed() -> void:
 	key_h_box.visible = true
 	get_tree().paused = false
 
-func update_message(notice: String) -> void:
-	message_label.text = notice
-	message_label.visible = true
-	message_timer.start()
-
 func _on_message_timer_timeout() -> void:
 	message_label.visible = false
-
-func get_keys() -> int:
-	return data.keys
