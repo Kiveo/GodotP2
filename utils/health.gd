@@ -4,8 +4,14 @@ signal gained_health
 signal lost_health
 signal died
 
-@export_range(1, 10, 1, "or_greater") var max_health: int = 3
-@export var health: int = 3
+@export_range(1, 10, 1, "or_greater") var max_health: int
+@export var health: int
+@export var healthBar: ProgressBar
+
+func _ready() -> void:
+	if healthBar: 
+		healthBar.value = health
+		healthBar.max_value = max_health
 
 ## set_health replaces current with arg. 
 ## If arg == a negative value, sets health to max_health and emits gained_health
@@ -19,6 +25,7 @@ func set_health(new_health: int) -> void:
 	if health < 0:
 		health = max_health
 		gained_health.emit()
+	if healthBar: healthBar.value = health
 
 ## updates_health based on int value passed. 
 ## First param is the int to be added
@@ -33,6 +40,7 @@ func update_health(number: int) -> void:
 	
 	if health <= 0:
 		died.emit()
+	if healthBar: healthBar.value = health
 
 func _on_hurt_box_hurt(hitbox: HitBox) -> void:
 	update_health(-1 * hitbox.damage) # note manually set to negative
