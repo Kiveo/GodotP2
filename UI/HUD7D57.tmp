@@ -1,0 +1,65 @@
+[gd_scene load_steps=5 format=3 uid="uid://c33xd57mkcr06"]
+
+[ext_resource type="Script" path="res://UI/hud.gd" id="1_l3ogy"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_6rcqw"]
+size = Vector2(32, 32)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_r8ner"]
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5isnj"]
+bg_color = Color(0, 0, 0, 0.75)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+expand_margin_left = 24.0
+expand_margin_top = 24.0
+expand_margin_right = 24.0
+expand_margin_bottom = 24.0
+
+[node name="Hud" type="CanvasLayer"]
+script = ExtResource("1_l3ogy")
+
+[node name="KeyHBox" type="HBoxContainer" parent="."]
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 217.0
+offset_bottom = 72.0
+
+[node name="KeySprite" type="TextureRect" parent="KeyHBox"]
+layout_mode = 2
+texture = SubResource("PlaceholderTexture2D_6rcqw")
+stretch_mode = 5
+
+[node name="KeyLabel" type="Label" parent="KeyHBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.193526, 0.717237, 0.348251, 1)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxTexture_r8ner")
+text = "KeyLabel"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CenterLabel" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -187.0
+offset_top = -44.0
+offset_right = 187.0
+offset_bottom = 44.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+theme_override_styles/normal = SubResource("StyleBoxFlat_5isnj")
+text = "Center Label"
+horizontal_alignment = 1
+vertical_alignment = 1

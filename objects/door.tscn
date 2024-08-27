@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7v6rfvjoy0gl"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_18jfh"]
+size = Vector2(128, 256)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wja8o"]
+size = Vector2(120, 252)
+
+[node name="Door" type="StaticBody2D"]
+collision_layer = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("PlaceholderTexture2D_18jfh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_wja8o")

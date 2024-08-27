@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="HudData" load_steps=2 format=3 uid="uid://3ta7j457fmy2"]
+
+[ext_resource type="Script" path="res://resources/hud_data.gd" id="1_85awk"]
+
+[resource]
+script = ExtResource("1_85awk")
+keys = 0
+keyText = "/3 Keys Found"
+centerText = "Find Keys and Kill the Golem!"

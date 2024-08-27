@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://byl7bu7fpfivs"]
+[gd_scene load_steps=5 format=3 uid="uid://byl7bu7fpfivs"]
 
 [ext_resource type="PackedScene" uid="uid://b885nnmv5e0ky" path="res://creatures/player.tscn" id="1_esdpy"]
-[ext_resource type="PackedScene" uid="uid://b4dbapbr70wm0" path="res://creatures/ghost.tscn" id="2_d8wkm"]
+[ext_resource type="PackedScene" uid="uid://b4dbapbr70wm0" path="res://creatures/ghost/ghost.tscn" id="2_d8wkm"]
 [ext_resource type="PackedScene" uid="uid://bji0lpywxxgvr" path="res://creatures/owl.tscn" id="3_nyqhx"]
+[ext_resource type="PackedScene" uid="uid://c7v6rfvjoy0gl" path="res://objects/door.tscn" id="4_7hl15"]
 
 [node name="Main" type="Node"]
 
@@ -14,3 +15,11 @@ position = Vector2(77, 169)
 position = Vector2(667, 271)
 
 [node name="Owl" parent="." instance=ExtResource("3_nyqhx")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(615, 378)
+scale = Vector2(1.09693, 1.195)
+zoom = Vector2(0.5, 0.5)
+
+[node name="Door" parent="." instance=ExtResource("4_7hl15")]
+position = Vector2(303, 234)

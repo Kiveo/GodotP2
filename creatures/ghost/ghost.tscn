@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=3 uid="uid://b4dbapbr70wm0"]
 
-[ext_resource type="Script" path="res://creatures/ghost.gd" id="1_clrju"]
+[ext_resource type="Script" path="res://creatures/ghost/ghost.gd" id="1_clrju"]
 [ext_resource type="Script" path="res://utils/hurtBox.gd" id="2_dmdpb"]
 [ext_resource type="Shader" path="res://utils/blink.gdshader" id="3_jlgqm"]
 [ext_resource type="Script" path="res://utils/health.gd" id="3_upmrl"]

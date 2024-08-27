@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" path="res://creatures/owl.gd" id="1_n53ym"]
 [ext_resource type="Script" path="res://utils/hitBox.gd" id="1_s4gy3"]
-[ext_resource type="Script" path="res://creatures/state_machine.gd" id="3_gf4ra"]
-[ext_resource type="Script" path="res://creatures/idle.gd" id="4_tqpdx"]
-[ext_resource type="Script" path="res://creatures/move.gd" id="5_gp4c2"]
-[ext_resource type="Script" path="res://creatures/attack.gd" id="6_72a8h"]
+[ext_resource type="Script" path="res://creatures/ghost/state_machine.gd" id="3_gf4ra"]
+[ext_resource type="Script" path="res://creatures/ghost/idle.gd" id="4_tqpdx"]
+[ext_resource type="Script" path="res://creatures/ghost/move.gd" id="5_gp4c2"]
+[ext_resource type="Script" path="res://creatures/ghost/attack.gd" id="6_72a8h"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_nlyma"]
 size = Vector2(64, 64)
@@ -36,7 +36,7 @@ radius = 51.9711
 
 [node name="Owl" type="CharacterBody2D"]
 collision_layer = 0
-collision_mask = 0
+collision_mask = 4
 motion_mode = 1
 script = ExtResource("1_n53ym")
 
@@ -50,7 +50,6 @@ autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_dq7jo")
-disabled = true
 
 [node name="HitBoxOwl" type="Area2D" parent="." groups=["friendly"]]
 unique_name_in_owner = true
