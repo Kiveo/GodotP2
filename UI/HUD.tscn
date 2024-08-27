@@ -24,8 +24,18 @@ expand_margin_right = 24.0
 expand_margin_bottom = 24.0
 
 [node name="Hud" type="CanvasLayer"]
+process_mode = 3
 script = ExtResource("1_l3ogy")
 data = ExtResource("2_rwaqj")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.118, 0.222, 0.142, 0.25)
 
 [node name="KeyHBox" type="HBoxContainer" parent="."]
 offset_left = 16.0

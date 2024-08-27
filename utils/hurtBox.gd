@@ -18,5 +18,4 @@ func _ready() -> void:
 
 func _on_area_entered(hitbox: HitBox) -> void:
 	if !hitbox: return 
-	print("owner and attacker: ", owner, hitbox)
 	hurt.emit(hitbox) # setup in Health script

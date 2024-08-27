@@ -4,18 +4,19 @@ extends CanvasLayer
 @onready var key_label: Label = %KeyLabel
 @onready var center_label: Label = %CenterLabel
 @onready var start_button: Button = %StartButton
+@onready var color_rect: ColorRect = %ColorRect
 
 @export var data: HudData
 var initial_center_text: String = ''
 
 func _ready() -> void:
 	if data:
-		print(data.keys)
 		key_label.text = str(data.keys) + data.keyText
 		update_key_label()
 		update_center_label(data.centerText)
 		initial_center_text = data.centerText
 	key_h_box.visible = false
+	get_tree().paused = true
 
 func add_keys() -> void:
 	data.keys =+ 1
@@ -44,4 +45,6 @@ func _on_start_button_pressed() -> void:
 	start_button.visible = false
 	center_label.visible = false
 	key_h_box.visible = true
+	get_tree().paused = false
 	
+	#color_rect.visible = false

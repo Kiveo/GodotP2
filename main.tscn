@@ -1,11 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://byl7bu7fpfivs"]
+[gd_scene load_steps=6 format=3 uid="uid://byl7bu7fpfivs"]
 
 [ext_resource type="PackedScene" uid="uid://b885nnmv5e0ky" path="res://creatures/player.tscn" id="1_esdpy"]
+[ext_resource type="PackedScene" uid="uid://c33xd57mkcr06" path="res://UI/HUD.tscn" id="1_p1jsk"]
 [ext_resource type="PackedScene" uid="uid://b4dbapbr70wm0" path="res://creatures/ghost/ghost.tscn" id="2_d8wkm"]
 [ext_resource type="PackedScene" uid="uid://bji0lpywxxgvr" path="res://creatures/owl.tscn" id="3_nyqhx"]
 [ext_resource type="PackedScene" uid="uid://c7v6rfvjoy0gl" path="res://objects/door.tscn" id="4_7hl15"]
 
 [node name="Main" type="Node"]
+
+[node name="Hud" parent="." instance=ExtResource("1_p1jsk")]
 
 [node name="Player" parent="." instance=ExtResource("1_esdpy")]
 unique_name_in_owner = true

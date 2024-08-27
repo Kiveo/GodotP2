@@ -16,7 +16,7 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 func _on_hurt_box_hurt(hitbox: HitBox) -> void:
-	hurt_box.set_collision_mask_value(4, false)
+	hurt_box.set_collision_mask_value(5, false)
 	set_collision_layer_value(1, false)
 	set_collision_mask_value(2, false)
 	recovery_timer.start()
@@ -25,6 +25,6 @@ func _on_hurt_box_hurt(hitbox: HitBox) -> void:
 
 func _on_recovery_timer_timeout() -> void:
 	recovering = false
-	hurt_box.set_collision_mask_value(4, true)
+	hurt_box.set_collision_mask_value(5, true)
 	set_collision_layer_value(1, true)
 	set_collision_mask_value(2, true)
