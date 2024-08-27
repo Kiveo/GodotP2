@@ -13,6 +13,8 @@ var recovering: bool = false
 func _physics_process(_delta: float) -> void:
 	var direction := Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	velocity = direction * SPEED
+	if Input.is_action_pressed("hold_player"):
+		velocity = Vector2.ZERO
 	move_and_slide()
 
 func _on_hurt_box_hurt(hitbox: HitBox) -> void:

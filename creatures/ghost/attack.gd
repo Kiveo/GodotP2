@@ -19,6 +19,7 @@ func enter() -> void:
 	hit_box_collision_shape.disabled = false
 	if !reloaded:
 		initial_velocity = parent.velocity.sign()
+		print(parent.velocity.sign())
 	else: 
 		initial_velocity = Input.get_vector("move_left", "move_right", "move_up", "move_down").sign()
 	current_attack_time = ATTACK_TIME

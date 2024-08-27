@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://c33xd57mkcr06"]
+[gd_scene load_steps=8 format=3 uid="uid://c33xd57mkcr06"]
 
 [ext_resource type="Script" path="res://UI/hud.gd" id="1_l3ogy"]
 [ext_resource type="Resource" uid="uid://3ta7j457fmy2" path="res://resources/hud_data.tres" id="2_rwaqj"]
@@ -22,6 +22,12 @@ expand_margin_left = 24.0
 expand_margin_top = 24.0
 expand_margin_right = 24.0
 expand_margin_bottom = 24.0
+
+[sub_resource type="InputEventAction" id="InputEventAction_op06m"]
+action = &"confirm"
+
+[sub_resource type="Shortcut" id="Shortcut_yu7vc"]
+events = [SubResource("InputEventAction_op06m")]
 
 [node name="Hud" type="CanvasLayer"]
 process_mode = 3
@@ -91,6 +97,27 @@ offset_bottom = -96.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 32
+shortcut = SubResource("Shortcut_yu7vc")
 text = "Start Game"
 
+[node name="MessageLabel" type="Label" parent="."]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -100.0
+offset_right = 400.0
+grow_vertical = 0
+text = "Hello World"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="MessageTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 2.0
+one_shot = true
+
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]
