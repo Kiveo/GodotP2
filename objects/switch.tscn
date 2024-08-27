@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://cfkrt66a85r4j"]
+
+[ext_resource type="Script" path="res://objects/switch.gd" id="1_5jkd8"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_cuxsb"]
+size = Vector2(16, 64)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vkwyc"]
+radius = 30.0
+height = 112.0
+
+[node name="Switch" type="Area2D"]
+collision_layer = 4
+script = ExtResource("1_5jkd8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("PlaceholderTexture2D_cuxsb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_vkwyc")
+debug_color = Color(0.521569, 0.521569, 0.270588, 0.270588)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
