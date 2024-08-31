@@ -1,13 +1,14 @@
 extends StaticBody2D
 
-@export var requirement: String = ''
-@onready var ray_cast_2d: RayCast2D = %RayCast2D
-@onready var timer: Timer = %Timer
+@onready var door_audio: AudioStreamPlayer2D = $DoorAudio
 
-func _physics_process(_delta: float) -> void:
-	if ray_cast_2d.is_colliding():
-		if HUD.get_keys() >= 3:
-			HUD.update_message("Door Unlocked!")
-			queue_free()
-		else:
-			HUD.update_message(requirement)
+@export var requirement: String = ''
+
+func _on_door_detection_area_body_entered(player: Player) -> void:
+	if !player: return
+	if HUD.get_keys() >= 3:
+		HUD.update_message("Door Unlocked!")
+		door_audio.play(2.5)
+		queue_free()
+	else:
+		HUD.update_message(requirement)

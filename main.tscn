@@ -1,46 +1,38 @@
-[gd_scene load_steps=9 format=3 uid="uid://byl7bu7fpfivs"]
+[gd_scene load_steps=7 format=3 uid="uid://byl7bu7fpfivs"]
 
 [ext_resource type="PackedScene" uid="uid://b885nnmv5e0ky" path="res://creatures/player.tscn" id="1_esdpy"]
 [ext_resource type="PackedScene" uid="uid://b4dbapbr70wm0" path="res://creatures/ghost/ghost.tscn" id="2_d8wkm"]
 [ext_resource type="PackedScene" uid="uid://bji0lpywxxgvr" path="res://creatures/owl.tscn" id="3_nyqhx"]
-[ext_resource type="PackedScene" uid="uid://c7v6rfvjoy0gl" path="res://objects/door.tscn" id="4_7hl15"]
 [ext_resource type="PackedScene" uid="uid://djus0tlmordqd" path="res://objects/chest.tscn" id="6_lxv82"]
-[ext_resource type="PackedScene" uid="uid://bddqtbdfljmya" path="res://objects/key.tscn" id="6_scbdc"]
-[ext_resource type="PackedScene" uid="uid://cfkrt66a85r4j" path="res://objects/switch.tscn" id="7_rxynt"]
+[ext_resource type="PackedScene" uid="uid://dmsu7sewahipq" path="res://level/area_1.tscn" id="9_28iej"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7ckrl"]
 bg_color = Color(1, 0.784314, 0, 1)
 
 [node name="Main" type="Node"]
 
+[node name="Area1" parent="." instance=ExtResource("9_28iej")]
+position = Vector2(-4, 772)
+
 [node name="Player" parent="." instance=ExtResource("1_esdpy")]
 unique_name_in_owner = true
-position = Vector2(77, 169)
+position = Vector2(-43, 724)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(658, -346)
+scale = Vector2(1.09693, 1.195)
+zoom = Vector2(0.5, 0.5)
 
 [node name="Ghost" parent="." instance=ExtResource("2_d8wkm")]
-position = Vector2(677, 96)
+position = Vector2(1113, 550)
 
 [node name="Ghost2" parent="." instance=ExtResource("2_d8wkm")]
-position = Vector2(28, 675)
+position = Vector2(410, 118)
 key_holder = true
 key_holder_style = SubResource("StyleBoxFlat_7ckrl")
 
 [node name="Owl" parent="." instance=ExtResource("3_nyqhx")]
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(615, 378)
-scale = Vector2(1.09693, 1.195)
-zoom = Vector2(0.5, 0.5)
-
-[node name="Door" parent="." instance=ExtResource("4_7hl15")]
-position = Vector2(303, 234)
-requirement = "Required: 3 Keys"
-
-[node name="Key" parent="." instance=ExtResource("6_scbdc")]
-position = Vector2(1167, 527)
+position = Vector2(-143, 606)
 
 [node name="Chest" parent="." instance=ExtResource("6_lxv82")]
-position = Vector2(1167, 89)
-
-[node name="Switch" parent="." instance=ExtResource("7_rxynt")]
-position = Vector2(570, 609)
+position = Vector2(-158, -388)

@@ -1,4 +1,4 @@
-extends Node2D
+extends CharacterBody2D
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var state_machine: Node = $StateMachine

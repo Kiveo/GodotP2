@@ -1,24 +1,50 @@
-[gd_scene load_steps=4 format=3 uid="uid://cfkrt66a85r4j"]
+[gd_scene load_steps=6 format=3 uid="uid://cfkrt66a85r4j"]
 
 [ext_resource type="Script" path="res://objects/switch.gd" id="1_5jkd8"]
+[ext_resource type="Texture2D" uid="uid://e1onwxxol440" path="res://assets/Possible lever.png" id="2_we8td"]
+[ext_resource type="AudioStream" uid="uid://y51ww1yxolg1" path="res://assets/skitterActivate.WAV" id="3_3k3ya"]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_cuxsb"]
-size = Vector2(16, 64)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ncd1u"]
+size = Vector2(43.254, 26.9841)
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vkwyc"]
-radius = 30.0
-height = 112.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v4l3w"]
+radius = 18.0
+height = 36.0
 
 [node name="Switch" type="Area2D"]
 collision_layer = 4
 script = ExtResource("1_5jkd8")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = SubResource("PlaceholderTexture2D_cuxsb")
+texture = ExtResource("2_we8td")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_vkwyc")
+position = Vector2(-4, 7)
+scale = Vector2(5.04, 5.04)
+shape = SubResource("RectangleShape2D_ncd1u")
 debug_color = Color(0.521569, 0.521569, 0.270588, 0.270588)
+
+[node name="static" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="static"]
+position = Vector2(-3, 17)
+rotation = 1.57079
+scale = Vector2(1, 4.52)
+shape = SubResource("CapsuleShape2D_v4l3w")
+
+[node name="Label" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = -136.0
+offset_top = -127.0
+offset_right = 140.0
+offset_bottom = -82.0
+theme_override_font_sizes/font_size = 32
+text = "Activate for a key!"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("3_3k3ya")
+bus = &"SFX"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

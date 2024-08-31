@@ -35,7 +35,6 @@ radius = 30.1496
 radius = 51.9711
 
 [node name="Owl" type="CharacterBody2D"]
-collision_layer = 0
 collision_mask = 4
 motion_mode = 1
 script = ExtResource("1_n53ym")
