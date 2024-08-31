@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://dbsotfvu6sw8s"
-path="res://.godot/imported/slam.WAV-956992fae1365694a188aca827efa3b8.sample"
+uid="uid://db3kemfyjl1l3"
+path="res://.godot/imported/lock1.WAV-d0a8360098c085c47357e3e372504d84.sample"
 
 [deps]
 
-source_file="res://assets/slam.WAV"
-dest_files=["res://.godot/imported/slam.WAV-956992fae1365694a188aca827efa3b8.sample"]
+source_file="res://assets/sounds/lock1.WAV"
+dest_files=["res://.godot/imported/lock1.WAV-d0a8360098c085c47357e3e372504d84.sample"]
 
 [params]
 

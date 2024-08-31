@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dfr6tojxsts4d"
-path="res://.godot/imported/Treasure bottom.png-9214c429c682b1d6a6d541ee1ee98577.ctex"
+uid="uid://bap225o6xeas8"
+path="res://.godot/imported/grassRoad.png-eb23b9c1ef00db1b1be021a2e9dc2e73.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Treasure bottom.png"
-dest_files=["res://.godot/imported/Treasure bottom.png-9214c429c682b1d6a6d541ee1ee98577.ctex"]
+source_file="res://assets/tiles/grassRoad.png"
+dest_files=["res://.godot/imported/grassRoad.png-eb23b9c1ef00db1b1be021a2e9dc2e73.ctex"]
 
 [params]
 

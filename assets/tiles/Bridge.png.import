@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ibf7xytheogh"
-path="res://.godot/imported/greyDiamonds.png-e40b5b25d715e9124d77519f8d4c3019.ctex"
+uid="uid://wqsmp63mgf3y"
+path="res://.godot/imported/Bridge.png-9c4aaafe01572f6c615831a93d86fcab.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/greyDiamonds.png"
-dest_files=["res://.godot/imported/greyDiamonds.png-e40b5b25d715e9124d77519f8d4c3019.ctex"]
+source_file="res://assets/tiles/Bridge.png"
+dest_files=["res://.godot/imported/Bridge.png-9c4aaafe01572f6c615831a93d86fcab.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://duob1jxqmf5qh"
-path="res://.godot/imported/grassRoadEnd.png-89dca7fe1e6f517c22d249910ab535d9.ctex"
+uid="uid://c7jsup3dcbvjn"
+path="res://.godot/imported/water tile.png-f38f4827bb6785f538a131ea3ea6e3c8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/grassRoadEnd.png"
-dest_files=["res://.godot/imported/grassRoadEnd.png-89dca7fe1e6f517c22d249910ab535d9.ctex"]
+source_file="res://assets/tiles/water tile.png"
+dest_files=["res://.godot/imported/water tile.png-f38f4827bb6785f538a131ea3ea6e3c8.ctex"]
 
 [params]
 

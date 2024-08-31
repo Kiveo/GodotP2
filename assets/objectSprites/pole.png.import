@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://e1onwxxol440"
-path="res://.godot/imported/Possible lever.png-4cf325a2c5eed0868087714d66948b31.ctex"
+uid="uid://bp2rdxinvrgj2"
+path="res://.godot/imported/pole.png-499d14085c7bdb020ae841399181dcbd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Possible lever.png"
-dest_files=["res://.godot/imported/Possible lever.png-4cf325a2c5eed0868087714d66948b31.ctex"]
+source_file="res://assets/objectSprites/pole.png"
+dest_files=["res://.godot/imported/pole.png-499d14085c7bdb020ae841399181dcbd.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cdytt5hn2hmbr"
-path="res://.godot/imported/door.png-b71998044d513d047c9b0091ee4a07ff.ctex"
+uid="uid://dfr6tojxsts4d"
+path="res://.godot/imported/Treasure bottom.png-2877bb8f8a46b79acc3ba2e6015c4ac3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/door.png"
-dest_files=["res://.godot/imported/door.png-b71998044d513d047c9b0091ee4a07ff.ctex"]
+source_file="res://assets/objectSprites/Treasure bottom.png"
+dest_files=["res://.godot/imported/Treasure bottom.png-2877bb8f8a46b79acc3ba2e6015c4ac3.ctex"]
 
 [params]
 

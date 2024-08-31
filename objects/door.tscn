@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://c7v6rfvjoy0gl"]
 
 [ext_resource type="Script" path="res://objects/door.gd" id="1_5ojia"]
-[ext_resource type="Texture2D" uid="uid://cdytt5hn2hmbr" path="res://assets/door.png" id="2_df2op"]
-[ext_resource type="AudioStream" uid="uid://db3kemfyjl1l3" path="res://assets/lock1.WAV" id="3_5tuo0"]
+[ext_resource type="Texture2D" uid="uid://cdytt5hn2hmbr" path="res://assets/objectSprites/door.png" id="2_df2op"]
+[ext_resource type="AudioStream" uid="uid://db3kemfyjl1l3" path="res://assets/sounds/lock1.WAV" id="3_5tuo0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wja8o"]
 size = Vector2(198.826, 43.7671)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bimqdxhmnmumo"
-path="res://.godot/imported/Treasure lid.png-15270ab88b528cd1b8aac199445931e7.ctex"
+uid="uid://bby1in1nt3dar"
+path="res://.godot/imported/Cobblestone Pillar.png-8f8a33ce81f3ab2872f1330735d685e6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Treasure lid.png"
-dest_files=["res://.godot/imported/Treasure lid.png-15270ab88b528cd1b8aac199445931e7.ctex"]
+source_file="res://assets/objectSprites/Cobblestone Pillar.png"
+dest_files=["res://.godot/imported/Cobblestone Pillar.png-8f8a33ce81f3ab2872f1330735d685e6.ctex"]
 
 [params]
 

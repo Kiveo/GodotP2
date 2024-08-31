@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://h6i7068xt1or"
-path="res://.godot/imported/Wooden Pillar FIX.png-56326156c8ebc01c0c850af8418a6191.ctex"
+uid="uid://bimqdxhmnmumo"
+path="res://.godot/imported/Treasure lid.png-3a44905cfe460d1b450deb5faa9eb9ef.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Wooden Pillar FIX.png"
-dest_files=["res://.godot/imported/Wooden Pillar FIX.png-56326156c8ebc01c0c850af8418a6191.ctex"]
+source_file="res://assets/objectSprites/Treasure lid.png"
+dest_files=["res://.godot/imported/Treasure lid.png-3a44905cfe460d1b450deb5faa9eb9ef.ctex"]
 
 [params]
 

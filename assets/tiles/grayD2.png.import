@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bby1in1nt3dar"
-path="res://.godot/imported/Cobblestone Pillar.png-be093c89dd88ca2dcc83f19a9a7bb15b.ctex"
+uid="uid://bf6r1alvyxed0"
+path="res://.godot/imported/grayD2.png-050bf171ac2ed477c27e4a293312be02.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Cobblestone Pillar.png"
-dest_files=["res://.godot/imported/Cobblestone Pillar.png-be093c89dd88ca2dcc83f19a9a7bb15b.ctex"]
+source_file="res://assets/tiles/grayD2.png"
+dest_files=["res://.godot/imported/grayD2.png-050bf171ac2ed477c27e4a293312be02.ctex"]
 
 [params]
 

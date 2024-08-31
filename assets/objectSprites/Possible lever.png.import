@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c7jsup3dcbvjn"
-path="res://.godot/imported/water tile.png-7da95d979e734c505faceff10ba68b6c.ctex"
+uid="uid://e1onwxxol440"
+path="res://.godot/imported/Possible lever.png-ce3ac3c8b4ac91987407f2ee29981788.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/water tile.png"
-dest_files=["res://.godot/imported/water tile.png-7da95d979e734c505faceff10ba68b6c.ctex"]
+source_file="res://assets/objectSprites/Possible lever.png"
+dest_files=["res://.godot/imported/Possible lever.png-ce3ac3c8b4ac91987407f2ee29981788.ctex"]
 
 [params]
 

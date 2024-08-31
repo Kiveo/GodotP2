@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://cfkrt66a85r4j"]
 
 [ext_resource type="Script" path="res://objects/switch.gd" id="1_5jkd8"]
-[ext_resource type="Texture2D" uid="uid://e1onwxxol440" path="res://assets/Possible lever.png" id="2_we8td"]
-[ext_resource type="AudioStream" uid="uid://y51ww1yxolg1" path="res://assets/skitterActivate.WAV" id="3_3k3ya"]
+[ext_resource type="Texture2D" uid="uid://e1onwxxol440" path="res://assets/objectSprites/Possible lever.png" id="2_we8td"]
+[ext_resource type="AudioStream" uid="uid://y51ww1yxolg1" path="res://assets/sounds/skitterActivate.WAV" id="3_3k3ya"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ncd1u"]
 size = Vector2(43.254, 26.9841)

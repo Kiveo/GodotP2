@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bp2rdxinvrgj2"
-path="res://.godot/imported/pole.png-5a1d0610ddd18b02900b86ea766ea66c.ctex"
+uid="uid://h6i7068xt1or"
+path="res://.godot/imported/Wooden Pillar FIX.png-69cc42d619e888ed8f35015658136142.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/pole.png"
-dest_files=["res://.godot/imported/pole.png-5a1d0610ddd18b02900b86ea766ea66c.ctex"]
+source_file="res://assets/objectSprites/Wooden Pillar FIX.png"
+dest_files=["res://.godot/imported/Wooden Pillar FIX.png-69cc42d619e888ed8f35015658136142.ctex"]
 
 [params]
 

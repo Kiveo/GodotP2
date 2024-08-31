@@ -4,6 +4,7 @@ extends CharacterBody2D
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var recovery_timer: Timer = %RecoveryTimer
 @onready var hurt_box: HurtBox = %HurtBox
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
 var damage_effects: DamageEffects = DamageEffects.new()
 
@@ -15,6 +16,12 @@ func _physics_process(_delta: float) -> void:
 	velocity = direction * SPEED
 	if Input.is_action_pressed("hold_player"):
 		velocity = Vector2.ZERO
+		return
+	if velocity.x != 0 or velocity.y != 0:
+		animated_sprite_2d.play("right")
+		if sign(direction.x) != 0: animated_sprite_2d.flip_h = sign(direction.x) < 0.0
+	else:
+		animated_sprite_2d.stop()
 	move_and_slide()
 
 func _on_hurt_box_hurt(hitbox: HitBox) -> void:

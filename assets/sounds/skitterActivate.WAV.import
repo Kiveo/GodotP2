@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://y51ww1yxolg1"
-path="res://.godot/imported/skitterActivate.WAV-17b2d07e4c85a05e18dcba3bdbf58dca.sample"
+path="res://.godot/imported/skitterActivate.WAV-3239efa1e6a7eafacc22626afe7b10c7.sample"
 
 [deps]
 
-source_file="res://assets/skitterActivate.WAV"
-dest_files=["res://.godot/imported/skitterActivate.WAV-17b2d07e4c85a05e18dcba3bdbf58dca.sample"]
+source_file="res://assets/sounds/skitterActivate.WAV"
+dest_files=["res://.godot/imported/skitterActivate.WAV-3239efa1e6a7eafacc22626afe7b10c7.sample"]
 
 [params]
 
