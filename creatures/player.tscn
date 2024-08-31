@@ -87,7 +87,7 @@ scale = Vector2(6.44, 6.44)
 shape = SubResource("CapsuleShape2D_1vx1t")
 
 [node name="Marker2D" type="Marker2D" parent="." groups=["owl_position"]]
-position = Vector2(-64, -151)
+position = Vector2(-40, -240)
 
 [node name="HurtBox" type="Area2D" parent="."]
 unique_name_in_owner = true
