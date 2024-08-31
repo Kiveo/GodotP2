@@ -1,6 +1,6 @@
 class_name DamageEffects extends Node
 
-var prop_sprite: Sprite2D
+var prop_sprite: Node2D
 var tween: Tween
 
 func _set_shader_blink_intensity(newIntensity: float) -> void:
@@ -14,7 +14,7 @@ func particle_explode(gpu_particles: GPUParticles2D) -> void:
 	gpu_particles.restart()
 	gpu_particles.emitting = true
 
-func fade_away(sprite: Sprite2D) -> void:
+func fade_away(sprite: Node2D) -> void:
 	if !sprite: return
 	if tween: tween.kill()
 	var new_tween = sprite.create_tween()
@@ -22,7 +22,7 @@ func fade_away(sprite: Sprite2D) -> void:
 
 ## Assumes presence of material "blink" shader and causes blink plus a knockback
 ## If passed a Vector2.Zero for damage_source_position, it will skip knockback
-func blink_and_knockback(sprite: Sprite2D, originNode: Node2D, damage_source_position: Vector2) -> void:
+func blink_and_knockback(sprite: Node2D, originNode: Node2D, damage_source_position: Vector2) -> void:
 	if (!sprite || !sprite.material): 
 		printerr("No sprite or material detected in blink_and_knockback call. Sprite: ", sprite, sprite.material)
 		return
@@ -32,5 +32,5 @@ func blink_and_knockback(sprite: Sprite2D, originNode: Node2D, damage_source_pos
 	tween = originNode.create_tween()
 	tween.tween_method(_set_shader_blink_intensity, 1.0, 0.0, 0.5)
 	if damage_source_position == Vector2.ZERO: return
-	var away_position = -10 * (damage_source_position - originNode.position).sign()
+	var away_position = -20 * (damage_source_position - originNode.position).sign()
 	tween.parallel().tween_property(sprite, "position", away_position, 0.25).as_relative().from_current().set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)

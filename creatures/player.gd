@@ -1,7 +1,6 @@
 class_name Player
 extends CharacterBody2D
 
-@onready var sprite: Sprite2D = $Sprite2D
 @onready var recovery_timer: Timer = %RecoveryTimer
 @onready var hurt_box: HurtBox = %HurtBox
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
@@ -29,7 +28,7 @@ func _on_hurt_box_hurt(hitbox: HitBox) -> void:
 	set_collision_layer_value(1, false)
 	set_collision_mask_value(2, false)
 	recovery_timer.start()
-	damage_effects.blink_and_knockback(sprite, self, hitbox.global_position)
+	damage_effects.blink_and_knockback(animated_sprite_2d, self, hitbox.global_position)
 	recovering = true
 
 func _on_recovery_timer_timeout() -> void:

@@ -13,6 +13,8 @@ height = 107.517
 [node name="Door" type="StaticBody2D"]
 collision_layer = 4
 script = ExtResource("1_5ojia")
+requirement = "Must Unlock"
+metadata/_edit_group_ = true
 
 [node name="DoorSprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_df2op")

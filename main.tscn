@@ -35,4 +35,4 @@ key_holder_style = SubResource("StyleBoxFlat_7ckrl")
 position = Vector2(-143, 606)
 
 [node name="Chest" parent="." instance=ExtResource("6_lxv82")]
-position = Vector2(-158, -388)
+position = Vector2(2705, -202)

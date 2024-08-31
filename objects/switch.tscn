@@ -5,15 +5,16 @@
 [ext_resource type="AudioStream" uid="uid://y51ww1yxolg1" path="res://assets/sounds/skitterActivate.WAV" id="3_3k3ya"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ncd1u"]
-size = Vector2(43.254, 26.9841)
+size = Vector2(52.381, 32.1429)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v4l3w"]
-radius = 18.0
-height = 36.0
+radius = 17.9204
+height = 35.8407
 
 [node name="Switch" type="Area2D"]
 collision_layer = 4
 script = ExtResource("1_5jkd8")
+metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_we8td")
@@ -25,15 +26,17 @@ shape = SubResource("RectangleShape2D_ncd1u")
 debug_color = Color(0.521569, 0.521569, 0.270588, 0.270588)
 
 [node name="static" type="StaticBody2D" parent="."]
+collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="static"]
-position = Vector2(-3, 17)
+position = Vector2(2.38419e-07, 7)
 rotation = 1.57079
-scale = Vector2(1, 4.52)
+scale = Vector2(1.8, 4.52)
 shape = SubResource("CapsuleShape2D_v4l3w")
 
 [node name="Label" type="Label" parent="."]
 unique_name_in_owner = true
+z_index = 2
 offset_left = -136.0
 offset_top = -127.0
 offset_right = 140.0

@@ -1,15 +1,14 @@
-[gd_scene load_steps=23 format=4 uid="uid://dmsu7sewahipq"]
+[gd_scene load_steps=21 format=4 uid="uid://dmsu7sewahipq"]
 
 [ext_resource type="Texture2D" uid="uid://bp2rdxinvrgj2" path="res://assets/objectSprites/pole.png" id="1_mjn5n"]
 [ext_resource type="Texture2D" uid="uid://pt75cmq1qe1c" path="res://assets/tiles/grassOnly.png" id="2_8xcwr"]
 [ext_resource type="Texture2D" uid="uid://bap225o6xeas8" path="res://assets/tiles/grassRoad.png" id="3_4vn4y"]
 [ext_resource type="Texture2D" uid="uid://bf6r1alvyxed0" path="res://assets/tiles/grayD2.png" id="3_ch1fj"]
-[ext_resource type="Texture2D" uid="uid://h6i7068xt1or" path="res://assets/objectSprites/Wooden Pillar FIX.png" id="3_t7v4g"]
 [ext_resource type="Texture2D" uid="uid://dhbwf86pluc8h" path="res://assets/tiles/grassRoadCross.png" id="4_jea5e"]
-[ext_resource type="PackedScene" uid="uid://bddqtbdfljmya" path="res://objects/key.tscn" id="4_ry6v6"]
 [ext_resource type="Texture2D" uid="uid://duob1jxqmf5qh" path="res://assets/tiles/grassRoadEnd.png" id="5_agoa2"]
 [ext_resource type="Texture2D" uid="uid://wqsmp63mgf3y" path="res://assets/tiles/Bridge.png" id="6_5pmmc"]
 [ext_resource type="Texture2D" uid="uid://dv7wmam2ohxpc" path="res://assets/tiles/Cobblestone tile.png" id="6_8krc2"]
+[ext_resource type="PackedScene" uid="uid://dshnhenjtrbo8" path="res://pedestal.tscn" id="8_68uw8"]
 [ext_resource type="PackedScene" uid="uid://cfkrt66a85r4j" path="res://objects/switch.tscn" id="11_3jcep"]
 [ext_resource type="PackedScene" uid="uid://c7v6rfvjoy0gl" path="res://objects/door.tscn" id="12_eaw51"]
 
@@ -83,9 +82,6 @@ sources/3 = SubResource("TileSetAtlasSource_prqea")
 sources/5 = SubResource("TileSetAtlasSource_3s0vh")
 sources/4 = SubResource("TileSetAtlasSource_eykwk")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_i7cwr"]
-size = Vector2(107, 87)
-
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ayrqy"]
 texture = ExtResource("3_ch1fj")
 texture_region_size = Vector2i(32, 32)
@@ -102,6 +98,7 @@ physics_layer_0/collision_mask = 0
 sources/1 = SubResource("TileSetAtlasSource_ayrqy")
 
 [node name="Area1" type="Node2D"]
+position = Vector2(1, 3)
 metadata/_edit_group_ = true
 
 [node name="Pole" type="Sprite2D" parent="."]
@@ -116,21 +113,8 @@ texture = ExtResource("1_mjn5n")
 tile_map_data = PackedByteArray("AAD//wAAAwAAAAAAAAD//wEAAAAAAAAAAAD/////AQAAAAAAAAD///7/BQAAAAAAAAD///3/AQAAAAAAAAD///z/AgAAAAAAAAD//wIAAAAAAAAAAAD+/wMAAAAAAAAAAAAAAAMAAAAAAAAAAAD//wQAAAAAAAAAAAAAAAQAAAAAAAAAAQD//wMAAAAAAAAAAQD+/wQAAAAAAAAAAQABAAQAAAAAAAAAAQABAAMAAAAAAAAAAQAAAAUAAAAAAAAAAQD+/wUAAAAAAAAAAQABAAUAAAAAAAAAAAD//wUAAAAAAAAAAAD9/wQAAAAAAAAAAAD9/wMAAAAAAAAAAQD9/wUAAAAAAAAAAQD//wYAAAAAAAAAAQABAAYAAAAAAAAAAQAAAAYAAAAAAAAAAAD+/wYAAAAAAAAAAAD9/wYAAAAAAAAAAAD///v/AQAAAAAAAAAAAPz/AQAAAAAAAQD+//z/AQAAAAAAAQD9//z/AQAAAAAAAQD8//z/AQAAAAAAAQABAPz/AQAAAAAAAQACAPz/AQAAAAAAAQD///r/AQAAAAAAAAD///n/AQAAAAAAAAD///j/AAAAAAAAAAAAAPj/AAAAAAAAAAD+//j/AAAAAAAAAAD+//f/AAAAAAAAAAD///f/AAAAAAAAAAAAAPf/AAAAAAAAAAADAPz/AAAAAAAAAAAFAPz/AAAAAAAAAAADAPv/AAAAAAAAAAAFAP3/AAAAAAAAAAADAP3/AAAAAAAAAQAEAP7/AAAAAAAAAQAFAP7/AAAAAAAAAAAGAP7/AAAAAAAAAQAHAP3/AAAAAAAAAAAHAPz/AAAAAAAAAQAGAPv/AAAAAAAAAQAGAPz/AAAAAAAAAAAGAP3/AAAAAAAAAAAHAPv/AAAAAAAAAAAFAPv/AAAAAAAAAQAEAPz/AAAAAAAAAQAEAPv/AAAAAAAAAAAEAP3/AAAAAAAAAAAGAPr/AAAAAAAAAAAEAPr/AAAAAAAAAAAFAPr/AAAAAAAAAQAFAPn/BQAAAAAAAAAFAPj/BAABAAIAAAAEAPf/BAABAAIAAAAGAPf/BAABAAIAAAAFAPb/BAABAAIAAAAFAPf/BAABAAIAAQAGAPj/BAABAAIAAQAEAPj/BAABAAIAAQAEAPb/BAABAAIAAQAGAPb/BAABAAIAAQAHAPj/BAABAAIAAQADAPj/BAABAAIAAQADAPb/BAABAAIAAQAHAPb/BAABAAIAAQAHAPf/BAABAAIAAAADAPf/BAABAAIAAAAFAPX/BAABAAIAAAAGAPX/BAABAAIAAQAEAPX/BAABAAIAAQA=")
 tile_set = SubResource("TileSet_jynrc")
 
-[node name="pedestal" type="StaticBody2D" parent="."]
-position = Vector2(-1539, 421)
-collision_layer = 4
-collision_mask = 0
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="pedestal"]
-position = Vector2(2, 42.5)
-shape = SubResource("RectangleShape2D_i7cwr")
-
-[node name="Sprite2D" type="Sprite2D" parent="pedestal"]
-texture = ExtResource("3_t7v4g")
-
-[node name="Key" parent="pedestal" instance=ExtResource("4_ry6v6")]
-position = Vector2(0, -84)
+[node name="pedestal" parent="." instance=ExtResource("8_68uw8")]
+position = Vector2(-1547, 534)
 
 [node name="Pole3" type="Sprite2D" parent="."]
 position = Vector2(904, -198)
@@ -152,3 +136,4 @@ position = Vector2(5168, -544)
 [node name="Door" parent="." instance=ExtResource("12_eaw51")]
 position = Vector2(2321, -986)
 scale = Vector2(2.12, 2.12)
+requirement = "3 Keys Required!"
