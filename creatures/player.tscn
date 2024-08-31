@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://b885nnmv5e0ky"]
+[gd_scene load_steps=17 format=3 uid="uid://b885nnmv5e0ky"]
 
 [ext_resource type="Script" path="res://creatures/player.gd" id="1_ueafm"]
 [ext_resource type="Shader" path="res://utils/blink.gdshader" id="2_08gp7"]
 [ext_resource type="Texture2D" uid="uid://ddae07g3hbmse" path="res://assets/heroRight2.png" id="2_q4n7f"]
 [ext_resource type="Script" path="res://utils/hurtBox.gd" id="3_7fhp2"]
+[ext_resource type="AudioStream" uid="uid://g6twuapplulq" path="res://assets/sounds/floppy steps.WAV" id="5_qra4e"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_21wpw"]
 shader = ExtResource("2_08gp7")
@@ -116,6 +117,13 @@ debug_color = Color(1, 0.266667, 0.266667, 0.2)
 unique_name_in_owner = true
 wait_time = 2.5
 one_shot = true
+
+[node name="PlayerAudio" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("5_qra4e")
+volume_db = -10.0
+pitch_scale = 1.1
+bus = &"SFX"
 
 [connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
 [connection signal="timeout" from="RecoveryTimer" to="." method="_on_recovery_timer_timeout"]

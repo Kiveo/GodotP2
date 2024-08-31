@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://g6twuapplulq"
+path="res://.godot/imported/floppy steps.WAV-b5da4d27b12f045682281e0ccfa74eac.sample"
+
+[deps]
+
+source_file="res://assets/sounds/floppy steps.WAV"
+dest_files=["res://.godot/imported/floppy steps.WAV-b5da4d27b12f045682281e0ccfa74eac.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

@@ -4,6 +4,7 @@ extends CharacterBody2D
 @onready var recovery_timer: Timer = %RecoveryTimer
 @onready var hurt_box: HurtBox = %HurtBox
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+@onready var player_audio: AudioStreamPlayer = %PlayerAudio
 
 var damage_effects: DamageEffects = DamageEffects.new()
 
@@ -19,8 +20,11 @@ func _physics_process(_delta: float) -> void:
 	if velocity.x != 0 or velocity.y != 0:
 		animated_sprite_2d.play("right")
 		if sign(direction.x) != 0: animated_sprite_2d.flip_h = sign(direction.x) < 0.0
+		#audio
+		if !player_audio.playing: player_audio.play()
 	else:
 		animated_sprite_2d.stop()
+		player_audio.playing = false
 	move_and_slide()
 
 func _on_hurt_box_hurt(hitbox: HitBox) -> void:

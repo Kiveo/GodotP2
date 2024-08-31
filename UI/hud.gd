@@ -7,6 +7,7 @@ extends CanvasLayer
 @onready var color_rect: ColorRect = %ColorRect
 @onready var message_label: Label = %MessageLabel
 @onready var message_timer: Timer = %MessageTimer
+@onready var message_audio: AudioStreamPlayer = $MessageAudio
 
 @export var data: HudData
 var initial_center_text: String = ''
@@ -44,6 +45,8 @@ func update_message(notice: String) -> void:
 	message_label.text = notice
 	message_label.visible = true
 	message_timer.start()
+	if message_audio.playing: return
+	message_audio.play()
 
 func get_keys() -> int:
 	return data.keys
