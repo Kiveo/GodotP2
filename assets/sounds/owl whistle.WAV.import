@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c7a3e2dh2di03"
+path="res://.godot/imported/owl whistle.WAV-54cc802ec11571481e570160576e769a.sample"
+
+[deps]
+
+source_file="res://assets/sounds/owl whistle.WAV"
+dest_files=["res://.godot/imported/owl whistle.WAV-54cc802ec11571481e570160576e769a.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

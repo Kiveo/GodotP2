@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bji0lpywxxgvr"]
+[gd_scene load_steps=14 format=3 uid="uid://bji0lpywxxgvr"]
 
 [ext_resource type="Script" path="res://creatures/owl.gd" id="1_n53ym"]
 [ext_resource type="Script" path="res://utils/hitBox.gd" id="1_s4gy3"]
@@ -6,6 +6,9 @@
 [ext_resource type="Script" path="res://creatures/ghost/idle.gd" id="4_tqpdx"]
 [ext_resource type="Script" path="res://creatures/ghost/move.gd" id="5_gp4c2"]
 [ext_resource type="Script" path="res://creatures/ghost/attack.gd" id="6_72a8h"]
+[ext_resource type="AudioStream" uid="uid://fv2gbbnnwwc2" path="res://assets/sounds/Adiuva4.WAV" id="7_mk5ib"]
+[ext_resource type="AudioStream" uid="uid://c7a3e2dh2di03" path="res://assets/sounds/owl whistle.WAV" id="8_dkjca"]
+[ext_resource type="AudioStream" uid="uid://ds61h2deaprgf" path="res://assets/sounds/Aduecho1.WAV" id="9_okxnp"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_nlyma"]
 size = Vector2(64, 64)
@@ -84,3 +87,9 @@ idle_state = NodePath("../Idle")
 move_state = NodePath("../Move")
 attack_state = NodePath(".")
 attack_speed = 2400.0
+attack_commands = Array[AudioStream]([ExtResource("7_mk5ib"), ExtResource("8_dkjca"), ExtResource("9_okxnp")])
+
+[node name="OwlAudio" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("7_mk5ib")
+bus = &"SFX"
