@@ -5,9 +5,13 @@ extends Area2D
 func _ready() -> void:
 	key_animation.play("float")
 
-func _on_body_entered(player: Player) -> void:
-	if !player: return
-	pickup()
+func _on_body_entered(body: CharacterBody2D) -> void:
+	print("Body detected: ", body)
+	if (body is Player):
+		pickup()
+		return
+	if body.is_in_group("friendly") and Input.is_action_pressed("hold_player"):
+		pickup()
 
 func pickup() -> void:
 	HUD.update_key_label(1)

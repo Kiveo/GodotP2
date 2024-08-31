@@ -34,7 +34,7 @@ radius = 30.1496
 [sub_resource type="CircleShape2D" id="CircleShape2D_8ejkn"]
 radius = 51.9711
 
-[node name="Owl" type="CharacterBody2D"]
+[node name="Owl" type="CharacterBody2D" groups=["friendly"]]
 z_index = 1
 collision_mask = 4
 motion_mode = 1

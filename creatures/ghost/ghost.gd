@@ -43,12 +43,12 @@ func follow_player(delta: float) -> void:
 
 # Logic / Helpers
 # SIGNALS
-func _on_detection_zone_body_entered(body: Player) -> void:
-	if !body: return
+func _on_detection_zone_body_entered(body: CharacterBody2D) -> void:
+	if body is not Player: return
 	alerted = true
 
-func _on_detection_zone_body_exited(body: Player) -> void:
-	if !body: return
+func _on_detection_zone_body_exited(body: CharacterBody2D) -> void:
+	if body is not Player: return
 	alerted = false
 
 func _on_health_died() -> void:

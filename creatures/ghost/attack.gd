@@ -13,6 +13,7 @@ var current_attack_time: float = 0.0
 const ATTACK_TIME: float = 1.0
 var attacking: bool = false
 var reloaded: bool = false
+var tween: Tween
 
 func enter() -> void:
 	super()
@@ -44,7 +45,8 @@ func process_physics(delta: float) -> State:
 		parent.velocity = Vector2.ZERO
 		parent.global_position = target.global_position
 		var target_pos = get_tree().get_nodes_in_group('owl_position')[0].global_position
-		var tween = parent.create_tween()
+		if tween: tween.kill()
+		tween = parent.create_tween()
 		tween.tween_property(parent, "position", target_pos, 0.25)
 		hit_box_collision_shape.disabled = true
 	elif !attacking:

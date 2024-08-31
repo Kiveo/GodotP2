@@ -7,14 +7,14 @@ extends Area2D
 const KEY = preload("res://objects/key.tscn")
 var can_activate: bool = false 
 
-func _on_body_entered(player: Player) -> void:
-	if !player: return
+func _on_body_entered(body: CharacterBody2D) -> void:
+	if body is not Player: return
 	HUD.update_message("Activate Switch: Press Enter/Confirm")
 	can_activate = true
 	label.visible = true
 
-func _on_body_exited(player: Player) -> void:
-	if !player: return
+func _on_body_exited(body: CharacterBody2D) -> void:
+	if body is not Player: return
 	can_activate = false
 	label.visible = false
 
