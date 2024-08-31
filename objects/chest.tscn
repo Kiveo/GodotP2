@@ -1,26 +1,131 @@
-[gd_scene load_steps=4 format=3 uid="uid://djus0tlmordqd"]
+[gd_scene load_steps=10 format=3 uid="uid://djus0tlmordqd"]
 
 [ext_resource type="Script" path="res://objects/chest.gd" id="1_nvi85"]
+[ext_resource type="Texture2D" uid="uid://dfr6tojxsts4d" path="res://assets/objectSprites/Treasure bottom.png" id="2_ckmb1"]
+[ext_resource type="Shader" path="res://utils/blink.gdshader" id="2_dbolp"]
+[ext_resource type="Texture2D" uid="uid://bimqdxhmnmumo" path="res://assets/objectSprites/Treasure lid.png" id="3_jtqni"]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_xgw5w"]
-size = Vector2(128, 64)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mwtds"]
+shader = ExtResource("2_dbolp")
+shader_parameter/blink_color = Color(0.807249, 1, 0, 1)
+shader_parameter/blink_intensity = 0.25
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3g2qi"]
-size = Vector2(188, 94)
+size = Vector2(116, 94)
+
+[sub_resource type="Animation" id="Animation_8kh8f"]
+resource_name = "open"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ChestTop:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -52), Vector2(10, -67), Vector2(56, -84), Vector2(121, -58), Vector2(137, -27), Vector2(147, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ChestBase:material:shader_parameter/blink_intensity")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.45),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.25, 0.5, 0.75, 0.25, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ChestBase:material:shader_parameter/blink_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.131763, 1, 0, 1), Color(0.807249, 1, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_u3b4u"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ChestTop:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -52)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ChestBase:material:shader_parameter/blink_intensity")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.25]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ChestBase:material:shader_parameter/blink_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.807249, 1, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0m57l"]
+_data = {
+"RESET": SubResource("Animation_u3b4u"),
+"open": SubResource("Animation_8kh8f")
+}
 
 [node name="Chest" type="Area2D"]
+scale = Vector2(1.16, 1.16)
 script = ExtResource("1_nvi85")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = SubResource("PlaceholderTexture2D_xgw5w")
+[node name="ChestBase" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_mwtds")
+position = Vector2(0, -24)
+texture = ExtResource("2_ckmb1")
+
+[node name="ChestTop" type="Sprite2D" parent="."]
+position = Vector2(0, -52)
+texture = ExtResource("3_jtqni")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -28)
 shape = SubResource("RectangleShape2D_3g2qi")
 debug_color = Color(0.521569, 0.521569, 0.270588, 0.270588)
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 1.5
+wait_time = 2.0
 one_shot = true
+
+[node name="ChestAnimations" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_0m57l")
+}
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
