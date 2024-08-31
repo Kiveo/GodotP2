@@ -8,5 +8,4 @@ func _on_body_entered(player: Player) -> void:
 	timer.start()
 
 func _on_timer_timeout() -> void:
-	print("timeout...new game?")
 	HUD.win()

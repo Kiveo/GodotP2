@@ -137,3 +137,7 @@ position = Vector2(5168, -544)
 position = Vector2(2321, -986)
 scale = Vector2(2.12, 2.12)
 requirement = "3 Keys Required!"
+
+[node name="SwitchKeyMarker" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(4652, -359)

@@ -33,4 +33,4 @@ func blink_and_knockback(sprite: Node2D, originNode: Node2D, damage_source_posit
 	tween.tween_method(_set_shader_blink_intensity, 1.0, 0.0, 0.5)
 	if damage_source_position == Vector2.ZERO: return
 	var away_position = -20 * (damage_source_position - originNode.position).sign()
-	tween.parallel().tween_property(sprite, "position", away_position, 0.25).as_relative().from_current().set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
+	tween.parallel().tween_property(sprite.get_parent(), "position", away_position, 0.25).as_relative().from_current().set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
