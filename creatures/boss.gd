@@ -5,6 +5,8 @@ extends CharacterBody2D
 @onready var laser: Sprite2D = %Laser
 @onready var hit_box_collider: CollisionShape2D = %HitBoxCollider
 @onready var player: Player = %Player
+@onready var music: AudioStreamPlayer = $"../Music"
+@onready var health_bar: ProgressBar = %HealthBar
 
 var damage_effects: DamageEffects = DamageEffects.new()
 const SPEED = 50.0
@@ -35,6 +37,11 @@ func _on_boss_detection_area_body_entered(body: CharacterBody2D) -> void:
 	if body is not Player: return
 	alerted = true
 	$BossBody.set_deferred("disabled", false)
+	const PROJECT_COMBO__MASTERED___1_ = preload("res://assets/sounds/Project_combo (mastered) (1).wav")
+	if music.stream == PROJECT_COMBO__MASTERED___1_:
+		return
+	music.stream = PROJECT_COMBO__MASTERED___1_
+	music.play()
 
 func laser_attack() -> void:
 	attack_recharging = true
@@ -62,6 +69,12 @@ func _on_health_died() -> void:
 	var new_key = KEY.instantiate()
 	owner.add_child(new_key)
 	new_key.global_position = self.global_position
+	
+	health_bar.visible = false
+	await get_tree().create_timer(1.5).timeout
+	const PROJECT_NIGHTV_4__1_ = preload("res://assets/sounds/Project nightv4 (1).mp3")
+	music.stream = PROJECT_NIGHTV_4__1_
+	music.play()
 	queue_free()
 
 func _on_health_lost_health() -> void:
