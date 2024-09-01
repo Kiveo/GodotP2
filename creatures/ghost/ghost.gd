@@ -9,6 +9,7 @@ const KEY = preload("res://objects/key.tscn")
 @onready var detection_zone: Area2D = $DetectionZone
 @onready var hurt_box: HurtBox = $HurtBox
 @onready var health_bar: ProgressBar = %HealthBar
+@onready var hit_box_ghost: HitBox = $HitBoxGhost
 
 @export var key_holder: bool = false
 @export var key_holder_style: StyleBoxFlat
@@ -54,6 +55,7 @@ func _on_detection_zone_body_exited(body: CharacterBody2D) -> void:
 func _on_health_died() -> void:
 	detection_zone.queue_free()
 	hurt_box.queue_free()
+	hit_box_ghost.queue_free()
 	$Body.queue_free()
 	damage_effects.fade_away(sprite)
 	damage_effects.particle_explode(gpu_particles_2d)

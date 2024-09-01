@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://byl7bu7fpfivs"]
 
+[ext_resource type="PackedScene" uid="uid://dew1hbt1bnled" path="res://bg.tscn" id="1_0tbjx"]
 [ext_resource type="PackedScene" uid="uid://b885nnmv5e0ky" path="res://creatures/player.tscn" id="1_esdpy"]
-[ext_resource type="Texture2D" uid="uid://d2jw5i07rq8f3" path="res://assets/Background (2).png" id="1_fmicn"]
 [ext_resource type="PackedScene" uid="uid://b4dbapbr70wm0" path="res://creatures/ghost/ghost.tscn" id="2_d8wkm"]
 [ext_resource type="PackedScene" uid="uid://bji0lpywxxgvr" path="res://creatures/owl.tscn" id="3_nyqhx"]
 [ext_resource type="PackedScene" uid="uid://djus0tlmordqd" path="res://objects/chest.tscn" id="6_lxv82"]
@@ -14,18 +14,7 @@ bg_color = Color(1, 0.784314, 0, 1)
 
 [node name="Main" type="Node"]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = -1
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("1_fmicn")
-expand_mode = 1
-stretch_mode = 5
+[node name="BG" parent="." instance=ExtResource("1_0tbjx")]
 
 [node name="Area1" parent="." instance=ExtResource("9_28iej")]
 position = Vector2(-4, 772)
@@ -37,7 +26,8 @@ position = Vector2(-43, 724)
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(658, -346)
 scale = Vector2(1.09693, 1.195)
-zoom = Vector2(0.5, 0.5)
+offset = Vector2(-500, 50)
+zoom = Vector2(0.8, 0.8)
 
 [node name="Ghost" parent="." instance=ExtResource("2_d8wkm")]
 position = Vector2(1225, 316)

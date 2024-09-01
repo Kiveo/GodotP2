@@ -1,0 +1,112 @@
+[gd_scene load_steps=8 format=3 uid="uid://dew1hbt1bnled"]
+
+[ext_resource type="Script" path="res://bg.gd" id="1_12rom"]
+[ext_resource type="Texture2D" uid="uid://d2jw5i07rq8f3" path="res://assets/Background (2).png" id="1_ux2sm"]
+[ext_resource type="Texture2D" uid="uid://c5kxh68h5fiw1" path="res://assets/Clouds.png" id="2_a53m2"]
+[ext_resource type="Texture2D" uid="uid://b8ui6l4lt37j7" path="res://assets/Clouds 2.png" id="3_pu8de"]
+
+[sub_resource type="Animation" id="Animation_grlxy"]
+resource_name = "move_clouds"
+length = 10.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CloudHolder:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(2675, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CloudHolder2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(2675, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_37wq1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CloudHolder:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CloudHolder2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2gvvj"]
+_data = {
+"RESET": SubResource("Animation_37wq1"),
+"move_clouds": SubResource("Animation_grlxy")
+}
+
+[node name="BG" type="CanvasLayer"]
+layer = -1
+script = ExtResource("1_12rom")
+cloud_speed = 0.1
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_ux2sm")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CloudHolder2" type="Marker2D" parent="."]
+modulate = Color(1, 1, 1, 0.266667)
+scale = Vector2(0.75, 0.75)
+
+[node name="Clouds1" type="Sprite2D" parent="CloudHolder2"]
+position = Vector2(1913.33, 1080)
+texture = ExtResource("2_a53m2")
+
+[node name="Clouds2" type="Sprite2D" parent="CloudHolder2"]
+position = Vector2(-58.6667, 234.667)
+texture = ExtResource("3_pu8de")
+
+[node name="CloudHolder" type="Marker2D" parent="."]
+modulate = Color(0.888014, 0.997434, 1, 1)
+
+[node name="Clouds1" type="Sprite2D" parent="CloudHolder"]
+position = Vector2(1284, 360)
+texture = ExtResource("2_a53m2")
+
+[node name="Clouds2" type="Sprite2D" parent="CloudHolder"]
+position = Vector2(-128, 716)
+texture = ExtResource("3_pu8de")
+
+[node name="BGAnimations" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_2gvvj")
+}
+autoplay = "move_clouds"
