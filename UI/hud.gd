@@ -56,6 +56,11 @@ func win() -> void:
 	center_label.visible = true
 	get_tree().paused = true
 
+func game_over() -> void:
+	update_center_label("YOU DIED! Better luck next time.")
+	center_label.visible = true
+	get_tree().paused = true
+
 # REACTIONS / INTERNAL METHODS
 func _on_start_button_pressed() -> void:
 	new_game()

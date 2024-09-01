@@ -41,3 +41,8 @@ func _on_recovery_timer_timeout() -> void:
 	hurt_box.set_collision_mask_value(5, true)
 	set_collision_layer_value(1, true)
 	set_collision_mask_value(2, true)
+
+func _on_health_died() -> void:
+	player_audio.stream = preload("res://assets/sounds/death.WAV")
+	player_audio.play()
+	HUD.game_over()

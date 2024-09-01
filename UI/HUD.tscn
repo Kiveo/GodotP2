@@ -114,6 +114,27 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
+[node name="MessageLabel2" type="Label" parent="."]
+custom_minimum_size = Vector2(450, 0)
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -712.0
+offset_bottom = 222.0
+grow_horizontal = 0
+text = "Controls :
+	1. Move: WASD (keyboard) / Left Stick or D-Pad to move (Controller)  
+	2. Attack: SPACEBAR or 1 (keyboard) / Right trigger (Controller) 
+	3. Control Owl: hold SHIFT / Left Trigger or bumper (Controller)  
+  4. Confirm: Press ENTER / X (Sony) / A (Xbox)
+- The player can attack using his companion, who will fly in the direction of movement
+- The player can be held still, moving only his companion
+- Attacking with the companion will reset it's location back to the player 
+- Companion can pickup keys when manually controlled "
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
 [node name="MessageTimer" type="Timer" parent="."]
 unique_name_in_owner = true
 wait_time = 2.0

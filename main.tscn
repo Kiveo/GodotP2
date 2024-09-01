@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://byl7bu7fpfivs"]
+[gd_scene load_steps=10 format=3 uid="uid://byl7bu7fpfivs"]
 
 [ext_resource type="PackedScene" uid="uid://b885nnmv5e0ky" path="res://creatures/player.tscn" id="1_esdpy"]
 [ext_resource type="Texture2D" uid="uid://d2jw5i07rq8f3" path="res://assets/Background (2).png" id="1_fmicn"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bji0lpywxxgvr" path="res://creatures/owl.tscn" id="3_nyqhx"]
 [ext_resource type="PackedScene" uid="uid://djus0tlmordqd" path="res://objects/chest.tscn" id="6_lxv82"]
 [ext_resource type="PackedScene" uid="uid://byanoya8k8ofe" path="res://creatures/boss.tscn" id="7_k4ufg"]
+[ext_resource type="AudioStream" uid="uid://b2eq1fn32s5vm" path="res://assets/sounds/Project nightv4 (1).mp3" id="8_dhyld"]
 [ext_resource type="PackedScene" uid="uid://dmsu7sewahipq" path="res://level/area_1.tscn" id="9_28iej"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7ckrl"]
@@ -39,11 +40,13 @@ scale = Vector2(1.09693, 1.195)
 zoom = Vector2(0.5, 0.5)
 
 [node name="Ghost" parent="." instance=ExtResource("2_d8wkm")]
-position = Vector2(-1003, 1087)
+position = Vector2(1225, 316)
+
+[node name="Ghost3" parent="." instance=ExtResource("2_d8wkm")]
+position = Vector2(4664, 344)
 
 [node name="Ghost2" parent="." instance=ExtResource("2_d8wkm")]
 position = Vector2(3120, 921)
-key_holder = true
 key_holder_style = SubResource("StyleBoxFlat_7ckrl")
 
 [node name="Owl" parent="." instance=ExtResource("3_nyqhx")]
@@ -54,3 +57,8 @@ position = Vector2(2705, -202)
 
 [node name="Boss" parent="." instance=ExtResource("7_k4ufg")]
 position = Vector2(-1185, -484)
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_dhyld")
+autoplay = true
+bus = &"Music"

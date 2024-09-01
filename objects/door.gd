@@ -10,8 +10,8 @@ var started: bool = false
 func _ready() -> void:
 	particles.visible = false
 
-func _on_door_detection_area_body_entered(player: Player) -> void:
-	if !player: return
+func _on_door_detection_area_body_entered(body: CharacterBody2D) -> void:
+	if body is not Player: return
 	if started: return
 	if HUD.get_keys() >= 3:
 		started = true
