@@ -1,0 +1,180 @@
+[gd_scene load_steps=12 format=3 uid="uid://byanoya8k8ofe"]
+
+[ext_resource type="Texture2D" uid="uid://cfh8s08v2whij" path="res://assets/Boss.png" id="1_on0qq"]
+[ext_resource type="Texture2D" uid="uid://mi2hkgjanro3" path="res://assets/Laser Beam.png" id="2_2ne43"]
+[ext_resource type="AudioStream" uid="uid://d31o1rumj0nn3" path="res://assets/sounds/splitzap2.WAV" id="3_mssnu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4oq7u"]
+size = Vector2(20, 32.9263)
+
+[sub_resource type="Gradient" id="Gradient_7y88u"]
+offsets = PackedFloat32Array(0.283019, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_1ovvk"]
+gradient = SubResource("Gradient_7y88u")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_k25p4"]
+particle_flag_disable_z = true
+emission_shape = 2
+emission_sphere_radius = 20.0
+gravity = Vector3(3100, 0, 0)
+scale_min = 4.0
+scale_max = 10.0
+color = Color(1, 0.000184953, 0.934028, 1)
+color_ramp = SubResource("GradientTexture1D_1ovvk")
+
+[sub_resource type="Animation" id="Animation_tdl3q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LaserOrigin/Laser:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LaserOrigin/Laser:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BossAudio:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BossAudio:volume_db")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_8twwt"]
+resource_name = "attack"
+length = 1.65
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LaserOrigin/Laser:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 1.65),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LaserOrigin/Laser:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 1.25, 1.65),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 0, 0.936231, 1), Color(0, 0, 0, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BossAudio:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.05, 1.65),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BossAudio:volume_db")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.05, 1.25, 1.65),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 0.0, 10.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jtdkb"]
+_data = {
+"RESET": SubResource("Animation_tdl3q"),
+"attack": SubResource("Animation_8twwt")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eicio"]
+
+[node name="Boss" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 33
+
+[node name="BossSprite" type="Sprite2D" parent="."]
+position = Vector2(0, -210)
+texture = ExtResource("1_on0qq")
+
+[node name="BossBody" type="CollisionShape2D" parent="."]
+position = Vector2(0, -153.9)
+scale = Vector2(8.68, 8.68)
+shape = SubResource("RectangleShape2D_4oq7u")
+
+[node name="LaserOrigin" type="Marker2D" parent="."]
+position = Vector2(0, -222)
+
+[node name="Laser" type="Sprite2D" parent="LaserOrigin"]
+visible = false
+scale = Vector2(2, 2)
+texture = ExtResource("2_2ne43")
+centered = false
+offset = Vector2(0, -35)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="LaserOrigin/Laser"]
+position = Vector2(32.5, 0)
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_k25p4")
+
+[node name="BossAnimations" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_jtdkb")
+}
+
+[node name="BossAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_mssnu")
+
+[node name="BossDetectionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BossDetectionArea"]
+position = Vector2(0, -222)
+scale = Vector2(77.2, 77.2)
+shape = SubResource("CircleShape2D_eicio")
+debug_color = Color(0.521569, 0.521569, 0.270588, 0.270588)

@@ -18,8 +18,8 @@ func _on_door_detection_area_body_entered(player: Player) -> void:
 		HUD.update_message("Door Unlocked!")
 		particles.visible = true
 		var tween = create_tween()
-		tween.tween_property(door_sprite, "position", Vector2.UP * 20, 1.6).as_relative().set_trans(Tween.TRANS_LINEAR)
-		tween.tween_property(door_sprite, "position", Vector2.DOWN * 20, 1.6).as_relative().set_trans(Tween.TRANS_LINEAR)
+		tween.tween_property(door_sprite, "position", Vector2.RIGHT * 20, 1.6).as_relative().set_trans(Tween.TRANS_LINEAR)
+		tween.tween_property(door_sprite, "position", Vector2.LEFT * 20, 1.6).as_relative().set_trans(Tween.TRANS_LINEAR)
 		tween.set_loops(2)
 		#AUDIO
 		await play_unlock_audio()

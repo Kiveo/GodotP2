@@ -71,6 +71,7 @@ autoplay = "float"
 [node name="KeyAudio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_l2qvh")
 autoplay = true
+max_distance = 1500.0
 bus = &"SFX"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
