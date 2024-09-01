@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var state_machine: Node = $StateMachine
+var facing: int = 1
 
 func _ready() -> void:
 	# Init the state machine and pass down parent ref

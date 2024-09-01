@@ -3,8 +3,6 @@ extends State
 @export var idle_state: State
 @export var attack_state: State
 
-#var tween: Tween
-
 func enter() -> void:
 	super()
 
@@ -21,7 +19,10 @@ func process_physics(_delta: float) -> State:
 		tween.tween_property(parent, "position", target_pos, 0.25)
 	
 	parent.velocity = Input.get_vector("move_left", "move_right", "move_up", "move_down") * move_speed
-	parent.animated_sprite_2d.flip_h = direction.x < 0
+	if sign(direction.x) > 0: parent.facing = 1
+	if sign(direction.x) < 0: parent.facing = -1
+	if sign(direction.x) != 0: parent.animated_sprite_2d.flip_h = sign(direction.x) < 0.0
+
 	parent.move_and_slide()
 	
 	if direction == Vector2.ZERO:

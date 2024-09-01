@@ -19,7 +19,6 @@ var attack_commands_index: int = 0
 
 func play_attack_audio() -> void:
 	if owl_audio.playing: 
-		print("already playing")
 		return
 	owl_audio.stream = attack_commands[attack_commands_index]
 	owl_audio.play()
@@ -40,6 +39,12 @@ func enter() -> void:
 	play_attack_audio()
 
 func process_input(_event: InputEvent) -> State:
+	if !attacking:
+		var direction: Vector2 = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+		if sign(direction.x) > 0: parent.facing = 1
+		if sign(direction.x) < 0: parent.facing = -1
+		if sign(direction.x) != 0: parent.animated_sprite_2d.flip_h = sign(direction.x) < 0.0
+	
 	if !attacking and Input.is_action_just_pressed('attack'):
 		reloaded = true
 		return attack_state
@@ -52,7 +57,7 @@ func process_physics(delta: float) -> State:
 		parent.velocity += initial_velocity * attack_speed * delta
 		parent.move_and_slide()
 	elif attacking:
-		parent.velocity.x += attack_speed * delta 
+		parent.velocity.x += parent.facing * attack_speed * delta 
 		parent.move_and_slide()
 	var target = get_tree().get_nodes_in_group('owl_position')[0]
 	if !attacking and parent.global_position != target.global_position:

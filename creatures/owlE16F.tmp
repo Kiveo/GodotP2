@@ -27,7 +27,7 @@ animations = [{
 "texture": ExtResource("5_y3gtj")
 }],
 "loop": true,
-"name": &"attack",
+"name": &"Attack",
 "speed": 12.0
 }, {
 "frames": [{
@@ -44,7 +44,7 @@ animations = [{
 "texture": ExtResource("5_y3gtj")
 }],
 "loop": true,
-"name": &"fly",
+"name": &"Idle",
 "speed": 8.0
 }]
 
@@ -69,7 +69,7 @@ unique_name_in_owner = true
 position = Vector2(-7, 16)
 scale = Vector2(1.25, 1.25)
 sprite_frames = SubResource("SpriteFrames_snop8")
-animation = &"attack"
+animation = &"Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -97,13 +97,11 @@ starting_state = NodePath("Idle")
 script = ExtResource("4_tqpdx")
 attack_state = NodePath("../Attack")
 move_state = NodePath("../Move")
-animation_name = "fly"
 
 [node name="Move" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "attack_state")]
 script = ExtResource("5_gp4c2")
 idle_state = NodePath("../Idle")
 attack_state = NodePath("../Attack")
-animation_name = "fly"
 
 [node name="Attack" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "move_state", "attack_state")]
 script = ExtResource("6_72a8h")
@@ -112,7 +110,6 @@ move_state = NodePath("../Move")
 attack_state = NodePath(".")
 attack_speed = 2400.0
 attack_commands = Array[AudioStream]([ExtResource("7_mk5ib"), ExtResource("8_dkjca"), ExtResource("9_okxnp")])
-animation_name = "attack"
 
 [node name="OwlAudio" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
