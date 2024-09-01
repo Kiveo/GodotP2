@@ -28,6 +28,7 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 func _on_hurt_box_hurt(hitbox: HitBox) -> void:
+	print("HURT BOX TRIGGER FROM PLAYER")
 	hurt_box.set_collision_mask_value(5, false)
 	set_collision_layer_value(1, false)
 	set_collision_mask_value(2, false)

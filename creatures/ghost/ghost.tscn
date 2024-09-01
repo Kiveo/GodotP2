@@ -22,7 +22,7 @@ shader_parameter/blink_intensity = 0.0
 [sub_resource type="Gradient" id="Gradient_p50d5"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_7j2xf"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_3f4gt"]
 gradient = SubResource("Gradient_p50d5")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_88nhd"]
@@ -32,7 +32,7 @@ direction = Vector3(0, 0, 0)
 spread = 180.0
 initial_velocity_max = 200.0
 scale_max = 10.0
-color_ramp = SubResource("GradientTexture1D_7j2xf")
+color_ramp = SubResource("GradientTexture1D_3f4gt")
 
 [sub_resource type="Animation" id="Animation_khldx"]
 length = 0.001

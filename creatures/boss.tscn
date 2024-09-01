@@ -1,8 +1,18 @@
-[gd_scene load_steps=12 format=3 uid="uid://byanoya8k8ofe"]
+[gd_scene load_steps=25 format=3 uid="uid://byanoya8k8ofe"]
 
+[ext_resource type="Script" path="res://creatures/boss.gd" id="1_22cru"]
 [ext_resource type="Texture2D" uid="uid://cfh8s08v2whij" path="res://assets/Boss.png" id="1_on0qq"]
 [ext_resource type="Texture2D" uid="uid://mi2hkgjanro3" path="res://assets/Laser Beam.png" id="2_2ne43"]
+[ext_resource type="Shader" path="res://utils/blink.gdshader" id="2_mni3f"]
 [ext_resource type="AudioStream" uid="uid://d31o1rumj0nn3" path="res://assets/sounds/splitzap2.WAV" id="3_mssnu"]
+[ext_resource type="Script" path="res://utils/hitBox.gd" id="4_x0n4b"]
+[ext_resource type="Script" path="res://utils/hurtBox.gd" id="5_itnln"]
+[ext_resource type="Script" path="res://utils/health.gd" id="7_hd2ix"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ni5td"]
+shader = ExtResource("2_mni3f")
+shader_parameter/blink_color = Color(1, 1, 1, 1)
+shader_parameter/blink_intensity = 0.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4oq7u"]
 size = Vector2(20, 32.9263)
@@ -15,13 +25,15 @@ gradient = SubResource("Gradient_7y88u")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_k25p4"]
 particle_flag_disable_z = true
-emission_shape = 2
-emission_sphere_radius = 20.0
-gravity = Vector3(3100, 0, 0)
+spread = 5.0
+initial_velocity_max = 848.02
 scale_min = 4.0
 scale_max = 10.0
 color = Color(1, 0.000184953, 0.934028, 1)
 color_ramp = SubResource("GradientTexture1D_1ovvk")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4dlmo"]
+size = Vector2(887.5, 23)
 
 [sub_resource type="Animation" id="Animation_tdl3q"]
 length = 0.001
@@ -72,6 +84,18 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("LaserOrigin/Laser/HitBox/HitBoxCollider:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_8twwt"]
@@ -126,6 +150,18 @@ tracks/3/keys = {
 "update": 0,
 "values": [0.0, 0.0, 0.0, 10.0]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("LaserOrigin/Laser/HitBox/HitBoxCollider:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.3, 1.5, 1.65),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, false, false, true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jtdkb"]
 _data = {
@@ -136,11 +172,39 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_eicio"]
 radius = 12.9663
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q76sl"]
+radius = 11.6139
+height = 27.1853
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_byc48"]
+bg_color = Color(0.561098, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bo4g3"]
+bg_color = Color(0, 0.791912, 0.0487034, 1)
+
+[sub_resource type="Gradient" id="Gradient_h6puq"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_7j2xf"]
+gradient = SubResource("Gradient_h6puq")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_su85x"]
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_max = 200.0
+scale_max = 10.0
+color_ramp = SubResource("GradientTexture1D_7j2xf")
+
 [node name="Boss" type="CharacterBody2D"]
 collision_layer = 2
-collision_mask = 33
+collision_mask = 32
+motion_mode = 1
+script = ExtResource("1_22cru")
 
 [node name="BossSprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_ni5td")
 position = Vector2(0, -210)
 texture = ExtResource("1_on0qq")
 
@@ -153,6 +217,7 @@ shape = SubResource("RectangleShape2D_4oq7u")
 position = Vector2(0, -222)
 
 [node name="Laser" type="Sprite2D" parent="LaserOrigin"]
+unique_name_in_owner = true
 visible = false
 scale = Vector2(2, 2)
 texture = ExtResource("2_2ne43")
@@ -161,21 +226,91 @@ offset = Vector2(0, -35)
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="LaserOrigin/Laser"]
 position = Vector2(32.5, 0)
-amount = 16
+amount = 24
 process_material = SubResource("ParticleProcessMaterial_k25p4")
+visibility_rect = Rect2(-100, -50, 1000, 100)
+
+[node name="HitBox" type="Area2D" parent="LaserOrigin/Laser"]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("4_x0n4b")
+
+[node name="HitBoxCollider" type="CollisionShape2D" parent="LaserOrigin/Laser/HitBox"]
+unique_name_in_owner = true
+position = Vector2(433.75, -1.5)
+shape = SubResource("RectangleShape2D_4dlmo")
+disabled = true
+debug_color = Color(0.258824, 0.854902, 0.266667, 0.2)
 
 [node name="BossAnimations" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_jtdkb")
 }
 
 [node name="BossAudio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_mssnu")
+bus = &"SFX"
 
 [node name="BossDetectionArea" type="Area2D" parent="."]
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BossDetectionArea"]
 position = Vector2(0, -222)
 scale = Vector2(77.2, 77.2)
 shape = SubResource("CircleShape2D_eicio")
 debug_color = Color(0.521569, 0.521569, 0.270588, 0.270588)
+
+[node name="LaserTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 3.0
+one_shot = true
+
+[node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("5_itnln")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(0, -222)
+scale = Vector2(17.8235, 15.7438)
+shape = SubResource("CapsuleShape2D_q76sl")
+debug_color = Color(1, 0.266667, 0.266667, 0.2)
+
+[node name="Health" type="Node" parent="." node_paths=PackedStringArray("healthBar")]
+script = ExtResource("7_hd2ix")
+max_health = 10
+health = 10
+healthBar = NodePath("../HealthBar")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+offset_left = -235.0
+offset_top = -505.0
+offset_right = -135.0
+offset_bottom = -478.0
+scale = Vector2(4.8, 1.72)
+theme_override_styles/background = SubResource("StyleBoxFlat_byc48")
+theme_override_styles/fill = SubResource("StyleBoxFlat_bo4g3")
+value = 50.0
+rounded = true
+show_percentage = false
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+unique_name_in_owner = true
+emitting = false
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_su85x")
+one_shot = true
+explosiveness = 1.0
+
+[node name="RecoveryTimer" type="Timer" parent="."]
+wait_time = 1.5
+
+[connection signal="body_entered" from="BossDetectionArea" to="." method="_on_boss_detection_area_body_entered"]
+[connection signal="body_exited" from="BossDetectionArea" to="." method="_on_boss_detection_area_body_exited"]
+[connection signal="timeout" from="LaserTimer" to="." method="_on_laser_timer_timeout"]
+[connection signal="hurt" from="HurtBox" to="Health" method="_on_hurt_box_hurt"]
+[connection signal="died" from="Health" to="." method="_on_health_died"]
+[connection signal="lost_health" from="Health" to="." method="_on_health_lost_health"]
+[connection signal="timeout" from="RecoveryTimer" to="." method="_on_recovery_timer_timeout"]
